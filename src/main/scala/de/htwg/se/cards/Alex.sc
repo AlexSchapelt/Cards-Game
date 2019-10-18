@@ -1,7 +1,5 @@
 import scala.collection.mutable.ListBuffer
 
-import org.scalatest
-import org.scalactic
 //datentypen:
 var b = 123
 b = 456
