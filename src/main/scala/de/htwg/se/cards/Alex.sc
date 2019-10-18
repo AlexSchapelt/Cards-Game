@@ -60,3 +60,6 @@ println(t.name)
 
 //this was edited in branch "anotherTestBranch":
 println("this is a test for branches")
+
+//this was added in branch "testbranches":
+println("here is another test")
