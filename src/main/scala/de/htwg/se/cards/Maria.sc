@@ -5,7 +5,7 @@ b._1
 'a' + 1
 'd' - 'c'
 98.toChar
-"a" * 3
+"a" * 6
 42.toBinaryString
 
 Int.MaxValue
