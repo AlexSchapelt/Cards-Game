@@ -33,5 +33,18 @@ class RationalSpec extends WordSpec with Matchers {
         }
       }
     }
+    "Multiplied with 1/2" should {
+      val m = new Rational(2,6).multiply(new Rational(1, 2))
+      "have 2 as numerator" in {
+        m.num should be {
+          2
+        }
+      }
+      "have 12 as denomintor" in {
+        m.den should be {
+          12
+        }
+      }
+    }
   }
 }
