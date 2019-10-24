@@ -23,7 +23,6 @@ class RationalSpec extends WordSpec with Matchers {
       val r = new Rational(2, 6).reduce()
       "shorten the numerator" in {
         r.num should be {
-          print(1)
           1
         }
       }
