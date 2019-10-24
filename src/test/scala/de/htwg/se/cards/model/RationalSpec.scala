@@ -18,15 +18,16 @@ class RationalSpec extends WordSpec with Matchers {
       }
     }
   }
-  "A Rational" when {
+  "A Rational 2/6" when {
     "reduced" should {
       val r = new Rational(2, 6).reduce()
-      "shorten the numerator to" in {
+      "shorten the numerator" in {
         r.num should be {
+          print(1)
           1
         }
       }
-      "shorten the denominator to" in {
+      "shorten the denominator" in {
         r.den should be {
           3
         }
