@@ -5,7 +5,10 @@ import org.scalatest.{Matchers, WordSpec}
 class RationalSpec extends WordSpec with Matchers {
   "A Rational" when {
     "new" should {
-      val r = new Rational(1, 2)
+      an[IllegalArgumentException] should be thrownBy {
+        val ex = Rational(1, 0)
+      }
+      val r = Rational(1, 2)
       "Have a numerator" in {
         r.num should be {
           1
@@ -17,13 +20,11 @@ class RationalSpec extends WordSpec with Matchers {
         }
       }
       "be a Rational" in {
-        r shouldBe a [Rational]
+        r shouldBe a[Rational]
       }
     }
-  }
-  "A Rational 2/6" when {
     "reduced" should {
-      val r = new Rational(2, 6).reduce()
+      val r = Rational(2, 6).reduce()
       "shorten the numerator" in {
         r.num should be {
           1
@@ -34,34 +35,17 @@ class RationalSpec extends WordSpec with Matchers {
           3
         }
       }
-      "be a Rational" in {
-        r shouldBe a [Rational]
+    }
+    "multiplied" should {
+      val m = Rational(2, 6).multiply(Rational(1, 2))
+      "be equal" in {
+        m should equal(Rational(2, 12))
       }
     }
-    "Multiplied with 1/2" should {
-      val m = new Rational(2, 6).multiply(new Rational(1, 2))
-      "have 2 as numerator" in {
-        m.num should be {
-          2
-        }
-      }
-      "have 12 as denomintor" in {
-        m.den should be {
-          12
-        }
-      }
-    }
-    "divided by 1/2" should {
-      val d = new Rational(2, 6).divide(new Rational(1, 2))
-      "have 4 as numerator" in {
-        d.num should be {
-          4
-        }
-      }
-      "have 6 as denominator" in {
-        d.den should be {
-          6
-        }
+    "divided" should {
+      val d = Rational(2, 6).divide(Rational(1, 2))
+      "be equal" in {
+        d should equal(Rational(4, 6))
       }
     }
   }
