@@ -5,9 +5,9 @@ case class Pig(name: String, isAlive: Boolean = true) {
 
 
   def fried(): String = {
-    this.name + "is now bacon"
+    this.name + " is now bacon"
   }
   def run(): String = {
-    this.name + "is running"
+    this.name + " is running"
   }
 }
