@@ -31,7 +31,7 @@ class PigSpec extends WordSpec with Matchers {
       deadPig.isAlive should be (false)
     }
     "be fried" in {
-      deadPig.fried should be("Pelusita is now Bacon")
+      deadPig.fried should be("Pelusita is now bacon")
     }
   }
 }
