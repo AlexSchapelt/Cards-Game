@@ -15,5 +15,4 @@ case class Pig(nombre: String) {
   def isAlive: Boolean = {
     true
   }
-
 }

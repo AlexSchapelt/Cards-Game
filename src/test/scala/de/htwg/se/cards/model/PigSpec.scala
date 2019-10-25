@@ -17,14 +17,14 @@ class PigSpec extends WordSpec with Matchers {
   }
   "alive" should {
     val pig = Pig("Pelusita")
-    assert(pig.isAlive())
+    assert(pig.isAlive)
     "be running" in {
       pig.run should be("Pelusita is running")
     }
   }
   "dead" should {
     val pig = Pig("Pelusita")
-    assert(!pig.isAlive())
+    assert(!pig.isAlive)
     "be fried" in {
       pig.fried should be("Pelusita is now Bacon")
     }
