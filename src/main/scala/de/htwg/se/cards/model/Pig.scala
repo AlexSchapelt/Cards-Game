@@ -12,7 +12,7 @@ case class Pig(nombre: String) {
   def run(): String = {
     this.name() + "is running"
   }
-  def isAlive(): Boolean = {
+  def isAlive: Boolean = {
     true
   }
 
