@@ -1,6 +1,14 @@
 import scala.collection.mutable.ListBuffer
 
-//datentypen:
+//tests:
+val numbers = Seq(1,2,3)
+val letters = Seq('a', 'b', 'c')
+for {
+  n <- numbers
+  c <- letters
+} yield (n, c)
+
+//types:
 var b = 123
 b = 456
 
@@ -51,7 +59,7 @@ case class Test(/*val not*/name: String) {
   //body of class is constructor, if not defined as def, var or val:
   println("this class is called: " + name)
 }
-val t = new Test("Bob")
+val t = Test("Bob")
 //does not work: t.name = "Gustav"
 val g=t.copy("Gustav")
 println(t.name)
