@@ -16,6 +16,9 @@ class RationalSpec extends WordSpec with Matchers {
           2
         }
       }
+      "be a Rational" in {
+        r shouldBe a [Rational]
+      }
     }
   }
   "A Rational 2/6" when {
@@ -30,6 +33,9 @@ class RationalSpec extends WordSpec with Matchers {
         r.den should be {
           3
         }
+      }
+      "be a Rational" in {
+        r shouldBe a [Rational]
       }
     }
     "Multiplied with 1/2" should {
