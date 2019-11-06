@@ -15,14 +15,20 @@ class TalonSpec extends WordSpec with Matchers {
       val (droped, card) = talon.drop()
       "have one card less" in {
         droped.cards.size should be {
-          talon.cards.size -1
+          talon.cards.size - 1
         }
       }
       "not contain droped card" in {
-        droped.cards.contains(card) should be (false)
+        droped.cards.contains(card.get) should be(false)
       }
       "still have same order" in {
-        droped.cards should be (talon.cards.tail)
+        droped.cards should be(talon.cards.tail)
+      }
+    }
+    "empty" should {
+      val empty = Talon(Nil)
+      "return nothing when drop()" in {
+        empty.drop() should be((empty, None))
       }
     }
   }
