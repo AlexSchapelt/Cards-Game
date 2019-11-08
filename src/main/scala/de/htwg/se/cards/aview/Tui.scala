@@ -1,22 +1,24 @@
 package de.htwg.se.cards.aview
 
-import de.htwg.se.cards.model.Talon
+import de.htwg.se.cards.model.{Player, Talon}
 
 class Tui {
-  def processInputLine(input: String, t: Talon): Talon = {
+  def processInputLine(input: String, t: Talon, p: Player): (Talon, Player) = {
     input match {
-      case "s" => t.shuffle()
+      case "s" => (t.shuffle(), p)
       case "v" =>
-        println(t.cards)
-        t
+        println("Cads of " + p.name + ":\n" + p.cards)
+        (t, p)
       case "d" =>
         val (talon, card) = t.drop()
-        card match {
-          case Some(x) => println(x)
-          case None => println("No more Cards in Talon")
+        val pe = card match {
+          case Some(x) => p.giveCard(card)
+          case None =>
+            println("No more Cards in Talon")
+            p
         }
-        talon
-      case _ => t
+        (talon, pe)
+      case _ => (t, p)
     }
   }
 }

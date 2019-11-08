@@ -7,17 +7,14 @@ import de.htwg.se.cards.aview._
 object Cards {
   val tui = new Tui
   var talon = Talon(Deck().cards)
+  var player = Player("Player 1", Nil)
   def main(args: Array[String]): Unit = {
-    val student = Player("Your Name")
-    println("Hello, " + student.name)
-    val divide = Rational(1, 2).divide(Rational(2, 3)).reduce()
-    println(divide)
-    println(Card("DIAMONDS", "Jack"))
-
     var input: String = ""
     do {
       input = readLine()
-      talon = tui.processInputLine(input, talon)
+      val (t, p) = tui.processInputLine(input, talon, player)
+      talon = t
+      player = p
     } while (input != "q")
   }
 }
