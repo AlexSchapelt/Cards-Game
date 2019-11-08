@@ -7,12 +7,10 @@ case class Status(talon: Talon, queue: List[Player]) {
   private val cover = file.getLines.mkString
   file.close()
 
-  def draw(): Status={
-
-    for(p <- queue) {
-
-    }
-    this.copy()
+  def draw(): Status = {
+    val (t, c) = talon.drop()
+    val p = queue.head.giveCard(c)
+    this.copy(t, queue.head.giveCard(c) :: queue.tail)
   }
 
   def shuffle(): Status = {
@@ -23,7 +21,7 @@ case class Status(talon: Talon, queue: List[Player]) {
     this.copy(queue = queue.tail :+ queue.head)
   }
 
-  def current():Player = {
+  def current(): Player = {
     queue.head
   }
 
