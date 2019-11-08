@@ -8,8 +8,4 @@ class Controller(var status:Status) extends Observable{
     talon.shuffle()
     notifyObservers
   }
-
-  def listToString(): Unit ={
-
-  }
 }
