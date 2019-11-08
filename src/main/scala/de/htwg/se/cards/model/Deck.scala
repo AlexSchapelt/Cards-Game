@@ -1,8 +1,8 @@
 package de.htwg.se.cards.model
 
 case class Deck() {
-  val suits = List("DIAMONDS", "HEARTS", "CLOVER", "SPADES")
-  val values = List("7", "8", "9", "10", "JACK", "QUEEN", "KING", "ASS")
+  val suits = List("<>", "<3", " ^", " +")
+  val values = List("7 ", "8 ", "9 ", "10", "J ", "Q ", "K ", "A ")
   val cards: List[Card] = for {
     s <- suits
     v <- values

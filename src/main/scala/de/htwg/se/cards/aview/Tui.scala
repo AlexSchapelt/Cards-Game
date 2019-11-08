@@ -11,13 +11,7 @@ class Tui {
         (t, p)
       case "d" =>
         val (talon, card) = t.drop()
-        val pe = card match {
-          case Some(x) => p.giveCard(card)
-          case None =>
-            println("No more Cards in Talon")
-            p
-        }
-        (talon, pe)
+        (talon, p.giveCard(card))
       case _ => (t, p)
     }
   }
