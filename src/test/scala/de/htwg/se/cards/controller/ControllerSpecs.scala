@@ -14,7 +14,7 @@ class ControllerSpecs extends WordSpec with Matchers {
       val player1 = Player("Player 1", Nil)
       val player2 = Player("Player 2", Nil)
       val talon = Talon(Deck().cards)
-      val queue = mutable.Queue(player1, player2)
+      val queue = List(player1, player2)
       val status = Status(talon, queue)
 
       val controller = new Controller(status)
@@ -30,8 +30,8 @@ class ControllerSpecs extends WordSpec with Matchers {
         observer.updated should be (true)
         controller.status.talon should not be talon.shuffle()
       }
-      "notify its Observer after listToString" in {
-        //controller.listToString
+      "notify its Observer after showCards" in {
+        //controller.showCards
         //observer.updated should be (true)
 
       }
