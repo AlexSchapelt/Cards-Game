@@ -11,8 +11,6 @@ object Cards {
   val tui = new Tui
   var talon = Talon(Deck().cards)
   var player = Player("Player 1", Nil)
-  var status = Status(talon, mutable.Queue(player))
-  printf(status.toString)
   def main(args: Array[String]): Unit = {
     var input: String = ""
     do {
