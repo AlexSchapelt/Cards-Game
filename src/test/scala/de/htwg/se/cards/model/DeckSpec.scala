@@ -6,7 +6,7 @@ class DeckSpec extends WordSpec with Matchers {
   "A Deck" should {
     val d = Deck()
     "have a Card of a 32 Deck" in {
-      d.cards.contains(Card("DIAMONDS", "7")) should be(true)
+      d.cards.contains(Card("<>", "7 ")) should be(true)
     }
     "have 32 Cards" in {
       d.cards.size should be(32)
