@@ -19,15 +19,15 @@ class StatusSpec extends WordSpec with Matchers {
         status.queue should be(queue)
       }
       "Have a current Player" in {
-        status.current() should be (player1)
+        status.current should be (player1)
       }
     }
     "next player" should {
       "return status with next player at front of que" in {
-        status.nextPlayer().current() should be (player2)
+        status.nextPlayer.current should be (player2)
       }
       "return status with last player at end of queue" in {
-        status.nextPlayer().queue.last should be (status.current())
+        status.nextPlayer.queue.last should be (status.current)
       }
     }
     /*"method call" should {

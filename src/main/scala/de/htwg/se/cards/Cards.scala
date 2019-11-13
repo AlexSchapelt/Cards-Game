@@ -4,20 +4,20 @@ import de.htwg.se.cards.model._
 
 import scala.io.StdIn.readLine
 import de.htwg.se.cards.aview._
-
-import scala.collection.mutable
+import de.htwg.se.cards.controller.Controller
 
 object Cards {
-  val tui = new Tui
-  var talon = Talon(Deck().cards)
-  var player = Player("Player 1", Nil)
+  val player = new Player("Player 1", Nil)
+  val talon = Talon(Deck().cards)
+  val s = new Status(talon, List(player))
+  val controller = new Controller(s)
+  val tui = new Tui(controller)
+  controller.notifyObservers
   def main(args: Array[String]): Unit = {
     var input: String = ""
     do {
       input = readLine()
-      val (t, p) = tui.processInputLine(input, talon, player)
-      talon = t
-      player = p
+      tui.processInputLine(input)
     } while (input != "q")
   }
 }

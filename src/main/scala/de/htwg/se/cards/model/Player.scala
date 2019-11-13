@@ -9,6 +9,8 @@ case class Player(name: String, cards: List[Card]) {
     }
   }
 
-  override def toString: String = name
+  override def toString: String = {
+    name + "'s cards:\n" + cards
+  }
 }
 
