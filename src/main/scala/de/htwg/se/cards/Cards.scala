@@ -7,9 +7,10 @@ import de.htwg.se.cards.aview._
 import de.htwg.se.cards.controller.Controller
 
 object Cards {
-  val player = new Player("Player 1", Nil)
+  val player = Player("Player 1", Nil)
   val talon = Talon(Deck().cards)
-  val s = new Status(talon, List(player))
+  //val testTalon = Talon(Deck().cards.take(5))
+  val s = Status(talon, List(player))
   val controller = new Controller(s)
   val tui = new Tui(controller)
   controller.notifyObservers

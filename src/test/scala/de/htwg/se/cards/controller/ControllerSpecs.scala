@@ -45,10 +45,7 @@ class ControllerSpecs extends WordSpec with Matchers {
       "notify its Observer after nextPlayer" in {
         controller.nexPlayer
         observer.updated should be (true)
-        status.nextPlayer should be(status.queue.tail.head)
-      }
-      "notify its Observer after draw" in {
-
+        controller.status.current should be(status.queue.tail.head)
       }
     }
   }

@@ -5,7 +5,6 @@ import scala.io.Source
 case class Status(talon: Talon, queue: List[Player]) {
   def draw: Status = {
     val (t, c) = talon.drop()
-    val p = queue.head.giveCard(c)
     this.copy(t, queue.head.giveCard(c) :: queue.tail)
   }
 
