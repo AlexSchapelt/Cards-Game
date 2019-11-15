@@ -23,7 +23,7 @@ class ObservableSpec extends WordSpec with Matchers {
     }
     "remove an Observer" in {
       observable.remove(observer)
-      observable.subscribers should not contain (observer)
+      observable.subscribers should not contain observer
     }
 
   }

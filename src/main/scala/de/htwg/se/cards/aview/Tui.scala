@@ -1,7 +1,7 @@
 package de.htwg.se.cards.aview
 
 import de.htwg.se.cards.controller.Controller
-import de.htwg.se.cards.util.{Observer}
+import de.htwg.se.cards.util.Observer
 
 class Tui (controller: Controller) extends Observer{
   controller.add(this)
