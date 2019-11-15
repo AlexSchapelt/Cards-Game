@@ -15,7 +15,8 @@ class Tui (controller: Controller) extends Observer{
     }
   }
 
-  override def update: Unit = {
+  override def update: Boolean = {
     println(controller.statusToString)
+    true
   }
 }

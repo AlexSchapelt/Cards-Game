@@ -23,7 +23,7 @@ class ControllerSpecs extends WordSpec with Matchers {
 
         def isUpdated: Boolean = updated
 
-        override def update: Unit = updated = true
+        override def update: Boolean = {updated = true; updated}
       }
       controller.add(observer)
       "notify its Observer after shuffle" in {
