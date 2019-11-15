@@ -24,8 +24,9 @@ class TuiSpec extends WordSpec with Matchers {
       controller.status.current should be (status.queue.tail.head)
     }
     "do nothing on any other input" in {
-      tui.processInputLine("test input")
-      controller.status should be (status)
+      val old = controller.statusToString
+      tui.processInputLine("99999")
+      controller.statusToString should be(old)
     }
   }
 }
