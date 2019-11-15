@@ -1,7 +1,7 @@
 name          := "cards"
 organization  := "de.htwg.se"
 version       := "0.0.1"
-scalaVersion  := "2.12.4"
+scalaVersion  := "2.12.7"
 
 libraryDependencies += "junit" % "junit" % "4.8" % "test"
 libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.8"
