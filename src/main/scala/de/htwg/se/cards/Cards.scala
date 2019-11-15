@@ -15,8 +15,10 @@ object Cards {
   val controller = new Controller(s)
   val tui = new Tui(controller)
   controller.notifyObservers
+
   def main(args: Array[String]): Unit = {
-    var input: String = ""
+    var input: String = args(0)
+    if (!input.isEmpty) tui.processInputLine(input)
     do {
       input = readLine()
       tui.processInputLine(input)

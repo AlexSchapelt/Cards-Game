@@ -1,7 +1,4 @@
 package de.htwg.se.cards.util
-
-import java.security.KeyStore.TrustedCertificateEntry
-
 import org.scalatest.{Matchers, WordSpec}
 
 class ObservableSpec extends WordSpec with Matchers {
@@ -25,7 +22,5 @@ class ObservableSpec extends WordSpec with Matchers {
       observable.remove(observer)
       observable.subscribers should not contain observer
     }
-
   }
-
 }
