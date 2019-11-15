@@ -21,6 +21,6 @@ case class Status(talon: Talon, queue: List[Player]) {
   }
 
   override def toString: String = {
-    talon.toString + current.toString
+    talon.toString + current.toString + "\nenter:\n's' to shuffle the talon\n'd' to draw a card\n'n' to change the Player\n'q' to quit the game"
   }
 }
