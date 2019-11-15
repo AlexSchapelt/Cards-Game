@@ -11,5 +11,9 @@ class CardSpec extends WordSpec with Matchers {
     "have a value" in {
       card.value should be ("7")
     }
+    "be accessable with Constructor" in {
+      Card(Deck().suits.head, Deck().values.head).value should be (Deck().values.head)
+      Card(Deck().suits.head, Deck().values.head).suit should be (Deck().suits.head)
+    }
   }
 }
