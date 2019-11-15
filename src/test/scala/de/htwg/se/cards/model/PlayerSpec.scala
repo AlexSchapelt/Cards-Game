@@ -1,7 +1,6 @@
 package de.htwg.se.cards.model
 
 import org.scalatest._
-import org.junit.runner.RunWith
 
 import scala.language.postfixOps
 
@@ -13,7 +12,7 @@ class PlayerSpec extends WordSpec with Matchers {
         player.name should be("Your Name")
       }
       "have a nice String representation" in {
-        player.toString should be("Your Name")
+        player.toString should be(player.name + "'s cards:\n" + player.cards)
       }
       "Have no cards" in {
         player.cards should be (Nil)

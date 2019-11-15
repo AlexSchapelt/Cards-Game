@@ -2,7 +2,6 @@ package de.htwg.se.cards.controller
 
 import de.htwg.se.cards.model.{Deck, Player, Status, Talon}
 import de.htwg.se.cards.util.Observer
-
 import scala.language.reflectiveCalls
 import org.scalatest.{Matchers, WordSpec}
 
@@ -19,25 +18,33 @@ class ControllerSpecs extends WordSpec with Matchers {
 
       val controller = new Controller(status)
 
-      val observer: Observer = new Observer {
+      val observer = new Observer {
         var updated: Boolean = false
+
         def isUpdated: Boolean = updated
+
         override def update: Unit = updated = true
       }
       controller.add(observer)
       "notify its Observer after shuffle" in {
-        controller.shuffle(talon)
-        observer.updated should be (true)
+        controller.shuffle
+        observer.updated should be(true)
         controller.status.talon should not be talon.shuffle()
       }
-      "notify its Observer after showCards" in {
-        //controller.showCards
-        //observer.updated should be (true)
-
-      }
+      /*"notify its Observer after showCards" in {
+        controller.showCards
+        observer.updated should be (true)
+      }*/
       "notify its Observer after draw" in {
-        //controller.draw
-        //observer.updated should be (true)
+        controller.draw
+        observer.updated should be(true)
+        status.draw.talon.cards.size should be(status.talon.cards.size - 1)
+        status.draw.current.cards.size should be(status.current.cards.size + 1)
+      }
+      "notify its Observer after nextPlayer" in {
+        controller.nexPlayer
+        observer.updated should be (true)
+        controller.status.current should be(status.queue.tail.head)
       }
     }
   }

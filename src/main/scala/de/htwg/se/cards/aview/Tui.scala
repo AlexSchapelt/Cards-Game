@@ -1,18 +1,20 @@
 package de.htwg.se.cards.aview
 
-import de.htwg.se.cards.model.{Player, Talon}
+import de.htwg.se.cards.controller.Controller
+import de.htwg.se.cards.util.{Observer}
 
-class Tui {
-  def processInputLine(input: String, t: Talon, p: Player): (Talon, Player) = {
+class Tui (controller: Controller) extends Observer{
+  controller.add(this)
+  def processInputLine(input: String): Unit = {
     input match {
-      case "s" => (t.shuffle(), p)
-      case "v" =>
-        println("Cads of " + p.name + ":\n" + p.cards)
-        (t, p)
-      case "d" =>
-        val (talon, card) = t.drop()
-        (talon, p.giveCard(card))
-      case _ => (t, p)
+      case "s" => controller.shuffle
+      //case "v" => controller.sh
+      case "d" => controller.draw
+      case _ =>
     }
+  }
+
+  override def update: Unit = {
+    println(controller.statusToString)
   }
 }
