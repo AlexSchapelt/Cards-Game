@@ -9,6 +9,7 @@ class Tui (controller: Controller) extends Observer{
     input match {
       case "s" => controller.shuffle
       //case "v" => controller.sh
+      case "n" => controller.nexPlayer
       case "d" => controller.draw
       case _ =>
     }
