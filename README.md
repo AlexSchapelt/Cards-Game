@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/AlexSchapelt/Cards-Game.svg?branch=master)](https://travis-ci.org/AlexSchapelt/Cards-Game)
+
 # Htwg Scala Seed Project 
 =====================================================
 ## the easiest way to start a project for the lecture SE
