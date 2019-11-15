@@ -6,6 +6,9 @@ scalaVersion  := "2.12.7"
 libraryDependencies += "junit" % "junit" % "4.8" % "test"
 libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.8"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.8" % "test"
+libraryDependencies += "org.apache.commons" % "commons-lang3" % "3.4"
+libraryDependencies += "org.apache.commons" % "commons-io" % "1.3.2"
+
 
 //*******************************************************************************//
 //Libraries that we will use in later lectures compatible with this scala version
