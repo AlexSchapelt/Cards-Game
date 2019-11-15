@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/AlexSchapelt/Cards-Game.svg?branch=master)](https://travis-ci.org/AlexSchapelt/Cards-Game)
-
+[![Coverage Status](https://coveralls.io/repos/github/AlexSchapelt/Cards-Game/badge.svg?branch=master)](https://coveralls.io/github/AlexSchapelt/Cards-Game?branch=master)
 # Htwg Scala Seed Project 
 =====================================================
 ## the easiest way to start a project for the lecture SE
