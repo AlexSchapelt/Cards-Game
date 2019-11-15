@@ -10,8 +10,8 @@ object Cards {
   val player1 = Player("Player 1", Nil)
   val player2 = Player("Player 2", Nil)
   val talon = Talon(Deck().cards)
-  //val testTalon = Talon(Deck().cards.take(5))
-  val s = Status(talon, List(player1, player2))
+  val testTalon = Talon(Deck().cards.take(5))
+  val s = Status(testTalon, List(player1, player2))
   val controller = new Controller(s)
   val tui = new Tui(controller)
   controller.notifyObservers
