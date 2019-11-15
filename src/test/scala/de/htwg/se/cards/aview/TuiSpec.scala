@@ -19,5 +19,13 @@ class TuiSpec extends WordSpec with Matchers {
       tui.processInputLine("d")
       controller.status.current.cards.size should be(status.current.cards.size + 1)
     }
+    "change player on input 'n'" in {
+      tui.processInputLine("n")
+      controller.status.current should be (status.queue.tail.head)
+    }
+    "do nothing on any other input" in {
+      tui.processInputLine("test input")
+      controller.status should be (status)
+    }
   }
 }
