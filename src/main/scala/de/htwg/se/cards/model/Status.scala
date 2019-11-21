@@ -37,6 +37,7 @@ case class Status(talon: Talon, queue: List[Player], discard: List[Card], rule: 
       "'s' to shuffle the talon\n" +
       "'d' to draw a card\n" +
       "'n' to change the Player\n" +
-      "'q' to quit the game"
+      "'q' to quit the game\n" +
+      "'([0-9] )+' to play a card"
   }
 }
