@@ -1,7 +1,5 @@
 package de.htwg.se.cards.model
 
-import scala.io.Source
-
 case class Status(talon: Talon, queue: List[Player]) {
   def draw: Status = {
     val (t, c) = talon.drop()
