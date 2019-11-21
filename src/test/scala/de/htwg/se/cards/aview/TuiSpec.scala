@@ -11,6 +11,11 @@ class TuiSpec extends WordSpec with Matchers {
     val status = Status(talon, queue, Nil)
     val controller = new Controller(status)
     val tui = new Tui(controller)
+    "try to play cards on inpu ([0-9] )+" in {
+      tui.processInputLine("d")
+      tui.processInputLine("0 ")
+      controller.status.discard.head should be(status.talon.cards.head)
+    }
     "shuffle the Deck on input 's'" in {
       tui.processInputLine("s")
       controller.status.talon should not be talon
@@ -21,7 +26,7 @@ class TuiSpec extends WordSpec with Matchers {
     }
     "change player on input 'n'" in {
       tui.processInputLine("n")
-      controller.status.current should be (status.queue.tail.head)
+      controller.status.current should be(status.queue.tail.head)
     }
     "do nothing on any other input" in {
       val old = controller.statusToString

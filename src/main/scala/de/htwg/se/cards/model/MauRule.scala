@@ -4,7 +4,7 @@ import de.htwg.se.cards.util.Rule
 
 class MauRule extends Rule {
   override def canPlay(toPlay: List[Card], played: List[Card]): Boolean = {
-    if (toPlay.size > 1) {
+    if (toPlay.size != 1) {
       false
     } else if (played.isEmpty) {
       true

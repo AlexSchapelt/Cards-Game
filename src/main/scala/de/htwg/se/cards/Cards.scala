@@ -11,13 +11,13 @@ object Cards {
   val player2 = Player("Player 2", Nil)
   val talon = Talon(Deck().cards)
   val testTalon = Talon(Deck().cards.take(5))
-  val s = Status(testTalon, List(player1, player2), Nil)
+  val s = Status(talon, List(player1, player2), Nil, new MauRule)
   val controller = new Controller(s)
   val tui = new Tui(controller)
   controller.notifyObservers
 
   def main(args: Array[String]): Unit = {
-    var input: String = args(0)
+    var input: String = ""//args(0)
     if (!input.isEmpty) tui.processInputLine(input)
     do {
       input = readLine()
