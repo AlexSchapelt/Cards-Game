@@ -8,7 +8,7 @@ class TuiSpec extends WordSpec with Matchers {
   "A Cards Tui" should {
     val queue = List(Player("Player 1", Nil), Player("Player 2", Nil))
     val talon = Talon(Deck().cards)
-    val status = Status(talon, queue)
+    val status = Status(talon, queue, Nil)
     val controller = new Controller(status)
     val tui = new Tui(controller)
     "shuffle the Deck on input 's'" in {
