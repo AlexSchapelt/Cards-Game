@@ -16,9 +16,4 @@ class MauRule extends Rule {
       false
     }
   }
-
-  override def init(status: Status): Status = {
-    val t = status.talon
-    val d =
-  }
 }
