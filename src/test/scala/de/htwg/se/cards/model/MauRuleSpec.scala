@@ -26,5 +26,11 @@ class MauRuleSpec extends WordSpec with Matchers {
       val played = Card("asdadsasd", "asdasd") :: Deck().cards.take(5)
       maurule.canPlay(toPlay, played) should be (false)
     }
+    "initialize the game" in {
+      val s = maurule.init(status = Status(queue = Player("Player 1", Nil)::Player("Player 2", Nil)::Nil))
+      s.discard.size should be (1)
+      s.queue.size should be (2)
+      s.talon.cards.size should be (Deck().cards.size - 7 * s.queue.size - 1)
+    }
   }
 }
