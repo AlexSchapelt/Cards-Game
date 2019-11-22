@@ -15,6 +15,14 @@ case class Talon(cards: List[Card]) {
     }
   }
 
+  def drop(number:Int): (Talon, Option[List[Card]]) = {
+    if (this.cards.size < number) {
+      (this, None)
+    } else {
+      (Talon(this.cards.drop(number)), Some(this.cards.take(number)))
+    }
+  }
+
   def shuffle(): Talon = {
     Talon(Random.shuffle(this.cards))
   }
