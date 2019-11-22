@@ -2,11 +2,13 @@ package de.htwg.se.cards.model
 
 import de.htwg.se.cards.util.Rule
 
-case class Status(talon: Talon, queue: List[Player], discard: List[Card], rule: Rule = new Rule {}) {
+case class Status(talon: Talon, queue: List[Player], discard: List[Card] = Nil, rule: Rule = new Rule {}) {
   def draw: Status = {
     val (t, c) = talon.drop()
     this.copy(t, queue.head.giveCard(c) :: queue.tail)
   }
+
+  def init: Status = rule.init(this)
 
   def shuffle: Status = {
     this.copy(talon = talon.shuffle())

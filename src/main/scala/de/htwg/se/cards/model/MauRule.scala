@@ -15,6 +15,5 @@ class MauRule extends Rule {
     } else {
       false
     }
-
   }
 }
