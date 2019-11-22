@@ -4,6 +4,11 @@ import de.htwg.se.cards.model.Status
 import de.htwg.se.cards.util.Observable
 
 class Controller(var status: Status) extends Observable {
+  def init(): Unit = {
+    status = status.init
+    notifyObservers
+  }
+
   def nexPlayer(): Unit = {
     status = status.nextPlayer
     notifyObservers
