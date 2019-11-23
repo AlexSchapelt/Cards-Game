@@ -1,7 +1,8 @@
 package de.htwg.se.cards.controller
 
-import de.htwg.se.cards.model.{Deck, Player, Status, Talon}
+import de.htwg.se.cards.model.{Deck, MauRule, Player, Status, Talon}
 import de.htwg.se.cards.util.Observer
+
 import scala.language.reflectiveCalls
 import org.scalatest.{Matchers, WordSpec}
 
@@ -14,7 +15,7 @@ class ControllerSpecs extends WordSpec with Matchers {
       val player2 = Player("Player 2", Nil)
       val talon = Talon(Deck().cards)
       val queue = List(player1, player2)
-      val status = Status(talon, queue)
+      val status = Status(talon, queue, rule = new MauRule)
 
       val controller = new Controller(status)
 
@@ -29,11 +30,6 @@ class ControllerSpecs extends WordSpec with Matchers {
         }
       }
       controller.add(observer)
-      "notify its Observer after init" in {
-        controller.init()
-        observer.updated should be(true)
-        controller.status.current.cards.size should be(7)
-      }
       "notify its Observer after shuffle" in {
         controller.shuffle()
         observer.updated should be(true)
@@ -57,6 +53,11 @@ class ControllerSpecs extends WordSpec with Matchers {
       "notify its Observer after play" in {
         controller.play(0 :: Nil)
         observer.updated should be(true)
+      }
+      "notify its Observer after init" in {
+        controller.init()
+        observer.updated should be(true)
+        controller.status.queue.head.cards.size should be(7)
       }
     }
   }
