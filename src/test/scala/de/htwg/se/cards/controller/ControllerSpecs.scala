@@ -24,10 +24,16 @@ class ControllerSpecs extends WordSpec with Matchers {
         def isUpdated: Boolean = updated
 
         override def update: Boolean = {
-          updated = true; updated
+          updated = true;
+          updated
         }
       }
       controller.add(observer)
+      "notify its Observer after init" in {
+        controller.init()
+        observer.updated should be(true)
+        controller.status.current.cards.size should be(7)
+      }
       "notify its Observer after shuffle" in {
         controller.shuffle()
         observer.updated should be(true)
