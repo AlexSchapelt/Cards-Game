@@ -11,7 +11,7 @@ object Cards {
   val player2 = Player("Player 2", Nil)
   val talon = Talon(Deck().cards)
   //dval testTalon = Talon(Deck().cards.take(5))
-  val s = Status(talon, queue = List(player1, player2), rule = new MauRuleStrategyStrategy)
+  val s = Status(talon, queue = List(player1, player2), rule = new MauRuleStrategy)
   val controller = new Controller(s)
   val tui = new Tui(controller)
   controller.notifyObservers

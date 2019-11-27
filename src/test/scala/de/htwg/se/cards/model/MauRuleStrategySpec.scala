@@ -4,7 +4,7 @@ import org.scalatest.{Matchers, WordSpec}
 
 class MauRuleStrategySpec extends WordSpec with Matchers {
   "A MauRule" should {
-    val maurule = new MauRuleStrategyStrategy
+    val maurule = new MauRuleStrategy
     "not allow to play more than one card" in {
       maurule.canPlay(Deck().cards.take(2), Nil) should be(false)
     }

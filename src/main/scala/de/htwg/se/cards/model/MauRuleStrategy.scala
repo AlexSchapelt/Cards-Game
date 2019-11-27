@@ -2,7 +2,7 @@ package de.htwg.se.cards.model
 
 import de.htwg.se.cards.util.RuleStrategy
 
-class MauRuleStrategyStrategy extends RuleStrategy {
+class MauRuleStrategy extends RuleStrategy {
   private val initCards = 7
 
   override def canPlay(toPlay: List[Card], played: List[Card]): Boolean = {
