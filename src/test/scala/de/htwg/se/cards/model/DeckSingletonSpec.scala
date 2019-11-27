@@ -2,9 +2,9 @@ package de.htwg.se.cards.model
 
 import org.scalatest.{Matchers, WordSpec}
 
-class DeckSpec extends WordSpec with Matchers {
+class DeckSingletonSpec extends WordSpec with Matchers {
   "A Deck" should {
-    val d = Deck()
+    val d = DeckSingleton
     "have a Card of a 32 Deck" in {
       d.cards.contains(Card("DIAMONDS", "7")) should be(true)
     }

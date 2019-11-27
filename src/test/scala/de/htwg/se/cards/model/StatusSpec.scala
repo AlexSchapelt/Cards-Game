@@ -8,7 +8,7 @@ class StatusSpec extends WordSpec with Matchers {
 
     val player1 = Player("Player 1", Nil)
     val player2 = Player("Player 2", Nil)
-    val talon = Talon(Deck().cards)
+    val talon = Talon(DeckSingleton.cards)
     val queue = List(player1, player2)
     val status = Status(talon, queue, rule = new MauRuleStrategy)
     "new" should {

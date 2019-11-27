@@ -9,8 +9,8 @@ import de.htwg.se.cards.controller.Controller
 object Cards {
   val player1 = Player("Player 1", Nil)
   val player2 = Player("Player 2", Nil)
-  val talon = Talon(Deck().cards)
-  //val testTalon = Talon(Deck().cards.take(5))
+  val talon = Talon(DeckSingleton.cards)
+  //val testTalon = Talon(DeckSingleton.cards.take(5))
   val s = Status(talon, queue = List(player1, player2), rule = new MauRuleStrategy)
   val controller = new Controller(s)
   val tui = new Tui(controller)

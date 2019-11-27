@@ -19,7 +19,7 @@ class PlayerSpec extends WordSpec with Matchers {
       }
     }
     "gived a card" should {
-      val talon = Talon(Deck().cards)
+      val talon = Talon(DeckSingleton.cards)
       val empty = Talon(Nil)
       val card = talon.drop() _2
       val c = empty.drop() _2
@@ -32,8 +32,8 @@ class PlayerSpec extends WordSpec with Matchers {
       }
     }
     "gived 5 cards" should {
-      val talon = Talon(Deck().cards)
-      val empty = Talon(Deck().cards.take(3))
+      val talon = Talon(DeckSingleton.cards)
+      val empty = Talon(DeckSingleton.cards.take(3))
       val player = Player("Player 1", Nil)
       "have one more card and shrinked the talon" in {
         val (t, cards) = talon.drop(5)

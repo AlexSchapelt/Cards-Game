@@ -20,7 +20,7 @@ class MauRuleStrategy extends RuleStrategy {
   }
 
   override def init(status: Status): Status = {
-    val fullTalon = Talon(Deck().cards).shuffle()
+    val fullTalon = Talon(DeckSingleton.cards).shuffle()
     val discardTalonSatus = status.copy(Talon(fullTalon.cards.tail), discard = fullTalon.cards.head :: Nil)
     dealCards(discardTalonSatus, 0)
   }

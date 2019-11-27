@@ -4,7 +4,7 @@ import org.scalatest.{Matchers, WordSpec}
 
 class TalonSpec extends WordSpec with Matchers {
   "A Talon" when {
-    val d = Deck().cards
+    val d = DeckSingleton.cards
     val talon = Talon(d)
     "filled" should {
       "should shuffle" in {
