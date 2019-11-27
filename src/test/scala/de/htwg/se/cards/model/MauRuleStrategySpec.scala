@@ -2,9 +2,9 @@ package de.htwg.se.cards.model
 
 import org.scalatest.{Matchers, WordSpec}
 
-class MauRuleSpec extends WordSpec with Matchers {
+class MauRuleStrategySpec extends WordSpec with Matchers {
   "A MauRule" should {
-    val maurule = new MauRule
+    val maurule = new MauRuleStrategyStrategy
     "not allow to play more than one card" in {
       maurule.canPlay(Deck().cards.take(2), Nil) should be(false)
     }

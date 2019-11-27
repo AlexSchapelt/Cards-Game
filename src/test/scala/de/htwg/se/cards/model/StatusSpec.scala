@@ -1,6 +1,6 @@
 package de.htwg.se.cards.model
 
-import de.htwg.se.cards.util.Rule
+import de.htwg.se.cards.util.RuleStrategy
 import org.scalatest.{Matchers, WordSpec}
 
 class StatusSpec extends WordSpec with Matchers {
@@ -10,7 +10,7 @@ class StatusSpec extends WordSpec with Matchers {
     val player2 = Player("Player 2", Nil)
     val talon = Talon(Deck().cards)
     val queue = List(player1, player2)
-    val status = Status(talon, queue, rule = new MauRule)
+    val status = Status(talon, queue, rule = new MauRuleStrategyStrategy)
     "new" should {
       "Have a Talon" in {
         status.talon should be(talon)
@@ -25,7 +25,7 @@ class StatusSpec extends WordSpec with Matchers {
         status.discard should be(Nil)
       }
       "Have a Rule" in {
-        status.rule.isInstanceOf[Rule] should be(true)
+        status.rule.isInstanceOf[RuleStrategy] should be(true)
       }
     }
     "next player" should {

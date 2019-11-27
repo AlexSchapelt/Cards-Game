@@ -1,6 +1,6 @@
 package de.htwg.se.cards.controller
 
-import de.htwg.se.cards.model.{Deck, MauRule, Player, Status, Talon}
+import de.htwg.se.cards.model.{Deck, MauRuleStrategyStrategy, Player, Status, Talon}
 import de.htwg.se.cards.util.Observer
 
 import scala.language.reflectiveCalls
@@ -15,7 +15,7 @@ class ControllerSpecs extends WordSpec with Matchers {
       val player2 = Player("Player 2", Nil)
       val talon = Talon(Deck().cards)
       val queue = List(player1, player2)
-      val status = Status(talon, queue, rule = new MauRule)
+      val status = Status(talon, queue, rule = new MauRuleStrategyStrategy)
 
       val controller = new Controller(status)
 
@@ -25,7 +25,7 @@ class ControllerSpecs extends WordSpec with Matchers {
         def isUpdated: Boolean = updated
 
         override def update: Boolean = {
-          updated = true;
+          updated = true
           updated
         }
       }

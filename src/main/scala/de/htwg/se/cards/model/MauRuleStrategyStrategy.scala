@@ -1,8 +1,8 @@
 package de.htwg.se.cards.model
 
-import de.htwg.se.cards.util.Rule
+import de.htwg.se.cards.util.RuleStrategy
 
-class MauRule extends Rule {
+class MauRuleStrategyStrategy extends RuleStrategy {
   private val initCards = 7
 
   override def canPlay(toPlay: List[Card], played: List[Card]): Boolean = {

@@ -1,8 +1,8 @@
 package de.htwg.se.cards.model
 
-import de.htwg.se.cards.util.Rule
+import de.htwg.se.cards.util.RuleStrategy
 
-case class Status(talon: Talon = Talon(Nil), queue: List[Player] = Nil, discard: List[Card] = Nil, rule: Rule = new Rule {}) {
+case class Status(talon: Talon = Talon(Nil), queue: List[Player] = Nil, discard: List[Card] = Nil, rule: RuleStrategy = new RuleStrategy {}) {
   def draw: Status = {
     val (t, c) = talon.drop()
     this.copy(t, current.giveCard(c) :: queue.tail)
