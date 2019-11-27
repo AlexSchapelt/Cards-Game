@@ -20,16 +20,18 @@ class MauRule extends Rule {
   }
 
   override def init(status: Status): Status = {
-    var t = Talon(Deck().cards).shuffle()
-    val q = for {p <- status.queue} yield {
-      val (ts, cs) = t.drop(initCards)
-      t = ts
-      p.copy(cards = cs.get)
-    }
-    val (ts, c) = t.drop()
-    t = ts
-    val d = c.get :: status.discard
+    val talon = Talon(Deck().cards).shuffle()
+    val initStatus = status.copy(Talon(talon.cards.tail), discard = talon.cards.head :: Nil)
+    initR(initStatus, 0)
+  }
 
-    status.copy(talon = t, queue = q, discard = d)
+  @scala.annotation.tailrec
+  private def initR(status: Status, finishedPlayer: Int): Status = {
+    val afterDraw = status.draw(initCards).nextPlayer
+    if (finishedPlayer >= status.queue.size - 1) {
+      afterDraw
+    } else {
+      initR(afterDraw, finishedPlayer + 1)
+    }
   }
 }
