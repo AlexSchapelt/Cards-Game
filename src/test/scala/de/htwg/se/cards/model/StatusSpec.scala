@@ -50,6 +50,15 @@ class StatusSpec extends WordSpec with Matchers {
         drawStatus.queue.tail should be(status.queue.tail)
       }
     }
+    "draw(n)" should {
+      val drawStatus = status.draw(5)
+      "shrink the talon" in {
+        drawStatus.talon.cards.size should be(status.talon.cards.size - 5)
+      }
+      "not touch other players" in {
+        drawStatus.queue.tail should be(status.queue.tail)
+      }
+    }
     "play" should {
       val playStatus = status.draw.draw.draw.play(2 :: Nil)
       "play the cards if allowed" in {

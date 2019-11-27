@@ -8,6 +8,13 @@ case class Player(name: String, cards: List[Card]) {
     }
   }
 
+  def giveCards(cards: Option[List[Card]]): Player = {
+    cards match {
+      case Some(x) => this.copy(cards = x ++ this.cards)
+      case None => this
+    }
+  }
+
   override def toString: String = {
     name + "'s cards:\n" + cards
   }

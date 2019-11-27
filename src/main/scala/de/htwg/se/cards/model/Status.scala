@@ -5,7 +5,12 @@ import de.htwg.se.cards.util.Rule
 case class Status(talon: Talon = Talon(Nil), queue: List[Player] = Nil, discard: List[Card] = Nil, rule: Rule = new Rule {}) {
   def draw: Status = {
     val (t, c) = talon.drop()
-    this.copy(t, queue.head.giveCard(c) :: queue.tail)
+    this.copy(t, current.giveCard(c) :: queue.tail)
+  }
+
+  def draw(num: Int): Status = {
+    val (t, cs) = talon.drop(num)
+    this.copy(t, current.giveCards(cs) :: queue.tail)
   }
 
   def init: Status = rule.init(this)
