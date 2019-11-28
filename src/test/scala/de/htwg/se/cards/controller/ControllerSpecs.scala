@@ -45,14 +45,22 @@ class ControllerSpecs extends WordSpec with Matchers {
         status.draw.talon.cards.size should be(status.talon.cards.size - 1)
         status.draw.current.cards.size should be(status.current.cards.size + 1)
       }
+      "notify its Observer after play" in {
+        controller.play(0 :: Nil)
+        observer.updated should be(true)
+      }
+      "handle undo/redo for playing a card" in {
+        val oldCards = controller.status.current.cards
+        controller.undo()
+        controller.status.current.cards.size should be (oldCards.size + 1)
+        controller.redo()
+        controller.status.current.cards.size should be (oldCards.size)
+        controller.undo()
+      }
       "notify its Observer after nextPlayer" in {
         controller.nexPlayer()
         observer.updated should be(true)
         controller.status.current should be(status.queue.tail.head)
-      }
-      "notify its Observer after play" in {
-        controller.play(0 :: Nil)
-        observer.updated should be(true)
       }
       "notify its Observer after init" in {
         controller.init()
