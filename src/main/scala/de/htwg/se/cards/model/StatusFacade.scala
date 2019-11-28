@@ -45,6 +45,6 @@ case class StatusFacade(talon: Talon = Talon(Nil), queue: List[Player] = Nil, di
       "'d' to draw a card\n" +
       "'n' to change the Player\n" +
       "'q' to quit the game\n" +
-      "'([0-9] )+' to play a card"
+      "'([0-9]+ )+' to play a card"
   }
 }

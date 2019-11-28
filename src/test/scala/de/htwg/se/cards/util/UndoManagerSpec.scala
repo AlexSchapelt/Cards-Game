@@ -6,7 +6,14 @@ class UndoManagerSpec extends WordSpec with Matchers {
 
   "An UndoManager" should {
     val undoManager = new UndoManager
-
+    "handle undo/redo if stack is empty correctly" in {
+      val command = new incrCommand
+      val oldState = command.state
+      undoManager.undoStep()
+      command.state should be (oldState)
+      undoManager.redoStep()
+      command.state should be (oldState)
+    }
     "have a do, undo and redo" in {
       val command = new incrCommand
       command.state should be(0)

@@ -7,7 +7,7 @@ class Tui(controller: Controller) extends Observer {
   controller.add(this)
 
   def processInputLine(input: String): Unit = {
-    val toPlay = "([0-9] )+".r
+    val toPlay = "([0-9]+ )+".r
     input match {
       //case "" => controller.addPlayer
       case "s" => controller.shuffle()
