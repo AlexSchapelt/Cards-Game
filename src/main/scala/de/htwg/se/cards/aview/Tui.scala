@@ -13,6 +13,8 @@ class Tui(controller: Controller) extends Observer {
       case "s" => controller.shuffle()
       case "n" => controller.nexPlayer()
       case "d" => controller.draw()
+      case "z" => controller.undo()
+      case "y" => controller.redo()
       case toPlay(x) => controller.play(input.split(" ").toList.map(x => x.toInt))
       case _ =>
     }
