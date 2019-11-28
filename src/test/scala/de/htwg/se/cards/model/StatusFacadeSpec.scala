@@ -3,14 +3,14 @@ package de.htwg.se.cards.model
 import de.htwg.se.cards.util.RuleStrategy
 import org.scalatest.{Matchers, WordSpec}
 
-class StatusSpec extends WordSpec with Matchers {
+class StatusFacadeSpec extends WordSpec with Matchers {
   "A status" when {
 
     val player1 = Player("Player 1", Nil)
     val player2 = Player("Player 2", Nil)
     val talon = Talon(DeckSingleton.cards)
     val queue = List(player1, player2)
-    val status = Status(talon, queue, rule = new MauRuleStrategy)
+    val status = StatusFacade(talon, queue, rule = new MauRuleStrategy)
     "new" should {
       "Have a Talon" in {
         status.talon should be(talon)

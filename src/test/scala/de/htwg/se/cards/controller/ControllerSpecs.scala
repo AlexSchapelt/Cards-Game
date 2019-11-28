@@ -1,6 +1,6 @@
 package de.htwg.se.cards.controller
 
-import de.htwg.se.cards.model.{DeckSingleton, MauRuleStrategy, Player, Status, Talon}
+import de.htwg.se.cards.model.{DeckSingleton, MauRuleStrategy, Player, StatusFacade, Talon}
 import de.htwg.se.cards.util.Observer
 
 import scala.language.reflectiveCalls
@@ -15,7 +15,7 @@ class ControllerSpecs extends WordSpec with Matchers {
       val player2 = Player("Player 2", Nil)
       val talon = Talon(DeckSingleton.cards)
       val queue = List(player1, player2)
-      val status = Status(talon, queue, rule = new MauRuleStrategy)
+      val status = StatusFacade(talon, queue, rule = new MauRuleStrategy)
 
       val controller = new Controller(status)
 

@@ -1,9 +1,9 @@
 package de.htwg.se.cards.controller
 
-import de.htwg.se.cards.model.Status
+import de.htwg.se.cards.model.StatusFacade
 import de.htwg.se.cards.util.Observable
 
-class Controller(var status: Status) extends Observable {
+class Controller(var status: StatusFacade) extends Observable {
   def init(): Unit = {
     status = status.init
     notifyObservers

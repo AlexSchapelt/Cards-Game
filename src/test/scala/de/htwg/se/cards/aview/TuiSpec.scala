@@ -1,14 +1,14 @@
 package de.htwg.se.cards.aview
 
 import de.htwg.se.cards.controller.Controller
-import de.htwg.se.cards.model.{DeckSingleton, Player, Status, Talon}
+import de.htwg.se.cards.model.{DeckSingleton, Player, StatusFacade, Talon}
 import org.scalatest.{Matchers, WordSpec}
 
 class TuiSpec extends WordSpec with Matchers {
   "A Cards Tui" should {
     val queue = List(Player("Player 1", Nil), Player("Player 2", Nil))
     val talon = Talon(DeckSingleton.cards)
-    val status = Status(talon, queue)
+    val status = StatusFacade(talon, queue)
     val controller = new Controller(status)
     val tui = new Tui(controller)
     "try to play cards on inpu ([0-9] )+" in {

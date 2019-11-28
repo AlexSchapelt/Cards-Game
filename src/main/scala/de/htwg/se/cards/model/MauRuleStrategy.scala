@@ -19,14 +19,14 @@ class MauRuleStrategy extends RuleStrategy {
     }
   }
 
-  override def init(status: Status): Status = {
+  override def init(status: StatusFacade): StatusFacade = {
     val fullTalon = Talon(DeckSingleton.cards).shuffle()
     val discardTalonSatus = status.copy(Talon(fullTalon.cards.tail), discard = fullTalon.cards.head :: Nil)
     dealCards(discardTalonSatus, 0)
   }
 
   @scala.annotation.tailrec
-  private def dealCards(status: Status, finishedPlayer: Int): Status = {
+  private def dealCards(status: StatusFacade, finishedPlayer: Int): StatusFacade = {
     val afterDraw = status.draw(initCards).nextPlayer
     if (finishedPlayer >= status.queue.size - 1) {
       afterDraw

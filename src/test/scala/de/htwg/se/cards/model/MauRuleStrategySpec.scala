@@ -27,7 +27,7 @@ class MauRuleStrategySpec extends WordSpec with Matchers {
       maurule.canPlay(toPlay, played) should be (false)
     }
     "initialize the game" in {
-      val s = maurule.init(status = Status(queue = Player("Player 1", Nil)::Player("Player 2", Nil)::Nil))
+      val s = maurule.init(status = StatusFacade(queue = Player("Player 1", Nil)::Player("Player 2", Nil)::Nil))
       s.discard.size should be (1)
       s.queue.size should be (2)
       s.talon.cards.size should be (DeckSingleton.cards.size - 7 * s.queue.size - 1)
