@@ -3,10 +3,12 @@ package de.htwg.se.cards.aview
 import de.htwg.se.cards.controller.Controller
 import de.htwg.se.cards.util.Observer
 
+import scala.swing.Reactor
+import scala.swing.event.Event
 import scala.util.Try
 
-class Tui(controller: Controller) extends Observer {
-  controller.add(this)
+class Tui(controller: Controller) extends Reactor {
+  listenTo(controller)
 
   def processInputLine(input: String): Unit = {
     val list: List[String] = input.split(" ").toList
@@ -22,7 +24,11 @@ class Tui(controller: Controller) extends Observer {
     }
   }
 
-  override def update: Boolean = {
+  reactions += {
+    case event =>  printTUI
+  }
+
+  def printTUI: Boolean = {
     println(controller.statusToString)
     true
   }

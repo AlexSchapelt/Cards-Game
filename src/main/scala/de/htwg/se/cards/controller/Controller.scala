@@ -1,44 +1,47 @@
 package de.htwg.se.cards.controller
 
 import de.htwg.se.cards.model.StatusFacade
-import de.htwg.se.cards.util.{Observable, UndoManager}
+import de.htwg.se.cards.util.UndoManager
 
-class Controller(var status: StatusFacade) extends Observable {
+import scala.swing.Publisher
+
+class Controller(var status: StatusFacade) extends Publisher {
   private val undoManager = new UndoManager
 
   def init(): Unit = {
     status = status.init
-    notifyObservers
+    publish(new StatusChanged)
   }
 
   def nexPlayer(): Unit = {
     status = status.nextPlayer
-    notifyObservers
+    publish(new PlayerChanged)
   }
 
   def draw(): Unit = {
     status = status.draw
-    notifyObservers
+    publish(new CardsChanged)
   }
 
   def shuffle(): Unit = {
     status = status.shuffle
-    notifyObservers
+    publish(new TalonChanged)
   }
 
   def play(i: List[Int]): Unit = {
     undoManager.doStep(new playCommand(this, i))
-    notifyObservers
+    publish(new CardsChanged)
+    publish(new DiscardChanged)
   }
 
   def undo(): Unit = {
     undoManager.undoStep()
-    notifyObservers
+    publish(new StatusChanged)
   }
 
   def redo(): Unit = {
     undoManager.redoStep()
-    notifyObservers
+    publish(new StatusChanged)
   }
 
   def statusToString: String = status.toString

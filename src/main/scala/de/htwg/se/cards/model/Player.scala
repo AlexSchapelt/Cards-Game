@@ -19,4 +19,3 @@ case class Player(name: String, cards: List[Card]) {
     name + "'s cards:\n" + cards
   }
 }
-
