@@ -5,16 +5,17 @@ import de.htwg.se.cards.model._
 import scala.io.StdIn.readLine
 import de.htwg.se.cards.aview._
 import de.htwg.se.cards.controller.Controller
+import scala.util.{Failure, Success, Try}
 
 object Cards {
   val player1 = Player("Player 1", Nil)
   val player2 = Player("Player 2", Nil)
   val talon = Talon(DeckSingleton.cards)
   //val testTalon = Talon(DeckSingleton.cards.take(5))
-  val s = StatusFacade(talon, queue = List(player1, player2), rule = new MauRuleStrategy)
+  val s = StatusFacade(talon, /*queue = List(player1, player2),*/ rule = new MauRuleStrategy)
   val controller = new Controller(s)
   val tui = new Tui(controller)
-  controller.notifyObservers
+  //controller.notifyObservers
 
   def main(args: Array[String]): Unit = {
     var input: String = "init" //args(0)
@@ -31,6 +32,14 @@ object Cards {
       }
 
       def initGame(): Unit = {
+        var n = toInt(readLine("Enter number of players: "))
+        while (n.isFailure) {
+          n = toInt(readLine("Enter number of players: "))
+        }
+        val queue = for {x <- Range(1, n.get + 1).toList} yield {
+          Player("Player " + x, Nil)
+        }
+        controller.status = controller.status.copy(queue = queue)
         controller.init()
         state = play()
       }
@@ -42,5 +51,10 @@ object Cards {
         }
       }
     }
+  }
+
+  private def toInt(s: String): Try[Int] = {
+    val value: Try[Int] = Try(s.toInt)
+    value.filter(x => x <= 4 && x > 0)
   }
 }
