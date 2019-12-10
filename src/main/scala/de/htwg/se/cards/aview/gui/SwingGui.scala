@@ -18,7 +18,7 @@ class SwingGui(controller: Controller) extends Frame {
   val DiscardPanel = new TextArea(controller.talon().toString) //TODO: Hier muss Discard rein!
   val TalonDiscardPanel = new FlowPanel(TalonPanel,DiscardPanel)
 
-  val cardsPanel = new TextArea(controller.cards().toString())
+  val cardsPanel = new CardsPanel(controller.cards(),controller)
 
   contents = new BorderPanel {
     add(TalonDiscardPanel,BorderPanel.Position.Center)

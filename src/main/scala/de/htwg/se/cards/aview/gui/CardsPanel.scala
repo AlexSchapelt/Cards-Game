@@ -11,10 +11,16 @@ import scala.swing.event._
 
 class CardsPanel(cards: List[Card], controller: Controller) extends FlowPanel {
 
-  cards.splitAt(1)
+  val i = cards.take(1)
+
+  val label = new Label {
+      text = i.toString()
+      font = new Font("Verdana", 1, 36)
+    }
+
 
   val card = new BoxPanel(Orientation.Vertical) {
-    contents
+    contents += label
   }
 
 }
