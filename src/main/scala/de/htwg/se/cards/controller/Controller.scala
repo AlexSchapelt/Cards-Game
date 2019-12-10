@@ -1,6 +1,6 @@
 package de.htwg.se.cards.controller
 
-import de.htwg.se.cards.model.StatusFacade
+import de.htwg.se.cards.model.{Card, StatusFacade, Talon}
 import de.htwg.se.cards.util.UndoManager
 
 import scala.swing.Publisher
@@ -42,6 +42,14 @@ class Controller(var status: StatusFacade) extends Publisher {
   def redo(): Unit = {
     undoManager.redoStep()
     publish(new StatusChanged)
+  }
+
+  def cards(): List[Card] = {
+    status.init.current.cards
+  }
+
+  def talon(): Talon = {
+    status.init.talon
   }
 
   def statusToString: String = status.toString

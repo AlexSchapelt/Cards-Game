@@ -7,7 +7,8 @@ case class Card (suit: String, value: String){
   private val cover = file.getLines.mkString
   file.close()
 
-  /*override def toString: String = {
+  override def toString: String = {
     String.format(cover, suit + value, suit + value, suit + value, suit+value)
-  }*/
+  }
+
 }

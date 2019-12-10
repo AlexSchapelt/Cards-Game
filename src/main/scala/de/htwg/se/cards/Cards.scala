@@ -4,7 +4,9 @@ import de.htwg.se.cards.model._
 
 import scala.io.StdIn.readLine
 import de.htwg.se.cards.aview._
-import de.htwg.se.cards.controller.Controller
+import de.htwg.se.cards.aview.gui.SwingGui
+import de.htwg.se.cards.controller.{Controller, StatusChanged}
+
 import scala.util.{Failure, Success, Try}
 
 object Cards {
@@ -12,9 +14,11 @@ object Cards {
   val player2 = Player("Player 2", Nil)
   val talon = Talon(DeckSingleton.cards)
   //val testTalon = Talon(DeckSingleton.cards.take(5))
-  val s = StatusFacade(talon, /*queue = List(player1, player2),*/ rule = new MauRuleStrategy)
+  val s = StatusFacade(talon, queue = List(player1, player2), rule = new MauRuleStrategy)
   val controller = new Controller(s)
-  val tui = new Tui(controller)
+  //val tui = new Tui(controller)
+  val gui = new SwingGui(controller)
+  controller.publish(new StatusChanged)
   //controller.notifyObservers
 
   def main(args: Array[String]): Unit = {
@@ -46,7 +50,7 @@ object Cards {
 
       def play(): Unit = {
         while (input != "q") {
-          tui.processInputLine(input)
+          //tui.processInputLine(input)
           input = readLine("Input: ")
         }
       }
