@@ -11,5 +11,3 @@ class PlayerChanged extends Event
 class TalonChanged extends Event
 
 class DiscardChanged extends Event
-
-case class SelectionChanged(index: Int) extends Event

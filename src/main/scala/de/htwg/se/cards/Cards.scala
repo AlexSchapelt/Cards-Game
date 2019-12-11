@@ -4,7 +4,7 @@ import de.htwg.se.cards.model._
 
 import scala.io.StdIn.readLine
 import de.htwg.se.cards.aview._
-import de.htwg.se.cards.aview.Gui.SwingGui
+import de.htwg.se.cards.aview.gui.SwingGui
 import de.htwg.se.cards.controller.Controller
 
 import scala.util.{Failure, Success, Try}

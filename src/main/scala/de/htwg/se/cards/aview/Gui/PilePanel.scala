@@ -1,15 +1,15 @@
-package de.htwg.se.cards.aview.Gui
+package de.htwg.se.cards.aview.gui
 
 import java.awt.Dimension
 
 import de.htwg.se.cards.controller.Controller
 import javax.swing.ImageIcon
 
-import scala.swing.{Button, Dimension, FlowPanel}
+import scala.swing.{Action, Button, Dimension, FlowPanel}
 
 class PilePanel(controller: Controller) extends FlowPanel {
   contents += new Button() {
-    controller.draw()
+    action = Action(""){controller.draw()}
 
     val d = new Dimension(100, 150)
     val img = new ImageIcon("./res/cards/red_back.png").getImage
