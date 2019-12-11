@@ -29,7 +29,6 @@ class SwingGui(controller: Controller) extends Frame {
 
   }
 
-
   visible = true
   repaint
 }
