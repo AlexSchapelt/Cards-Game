@@ -50,14 +50,16 @@ class SwingGui(controller: Controller) extends Frame {
       val pile = new PilePanel(controller)
       mainLayout.contents(pilesPos) = pile
       contents = mainLayout
-      //repaint
-      //maximize()
     case e: PlayerChanged =>
       val cards = new CardsPanel(controller)
       mainLayout.contents(cardsPos) = cards
       contents = mainLayout
-      //repaint
-      //maximize()
+    case e: StatusChanged =>
+      val cards = new CardsPanel(controller)
+      mainLayout.contents(cardsPos) = cards
+      val pile = new PilePanel(controller)
+      mainLayout.contents(pilesPos) = pile
+      contents = mainLayout
   }
 
   menuBar = new MenuBar {

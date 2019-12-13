@@ -31,7 +31,8 @@ class MauRuleStrategy extends RuleStrategy {
 
   @scala.annotation.tailrec
   private def dealCards(status: StatusFacade, finishedPlayer: Int): StatusFacade = {
-    val afterDraw = status.draw(initCards).nextPlayer
+    val resetCards = status.copy(queue = status.queue.head.copy(cards = Nil) :: status.queue.tail)
+    val afterDraw = resetCards.draw(initCards).nextPlayer
     if (finishedPlayer >= status.queue.size - 1) {
       afterDraw
     } else {
