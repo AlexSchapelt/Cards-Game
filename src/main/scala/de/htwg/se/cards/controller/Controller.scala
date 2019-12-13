@@ -19,7 +19,7 @@ class Controller(var status: StatusFacade) extends Publisher {
   }
 
   def draw(): Unit = {
-    status = status.draw
+    status = if (status == status.draw) status.rule.fillTalon(status).draw else status.draw
     publish(new CardsChanged)
   }
 

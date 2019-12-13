@@ -8,6 +8,10 @@ import de.htwg.se.cards.controller._
 import scala.io.Source._
 
 class SwingGui(controller: Controller) extends Frame {
+  private val cardsPos = 2
+  private val pilesPos = 1
+  private val contrPos = 0
+
   maximize()
   override def closeOperation(): Unit = {
     System.exit(0)
@@ -23,7 +27,9 @@ class SwingGui(controller: Controller) extends Frame {
   val mainLayout = new GridPanel(3, 1) {
     contents +=
       new FlowPanel() {
-        contents += Button("next Player") {controller.nexPlayer()}
+        contents += Button("next Player") {
+          controller.nexPlayer()
+        }
       }
     contents +=
       pile
@@ -36,21 +42,37 @@ class SwingGui(controller: Controller) extends Frame {
   reactions += {
     case e: CardsChanged =>
       val cards = new CardsPanel(controller)
-      mainLayout.contents(2) = cards
+      mainLayout.contents(cardsPos) = cards
       contents = mainLayout
-      repaint
+      //repaint
+      //maximize()
     case e: DiscardChanged =>
       val pile = new PilePanel(controller)
-      mainLayout.contents(1) = pile
+      mainLayout.contents(pilesPos) = pile
       contents = mainLayout
-      repaint
+      //repaint
+      //maximize()
     case e: PlayerChanged =>
       val cards = new CardsPanel(controller)
-      mainLayout.contents(2) = cards
+      mainLayout.contents(cardsPos) = cards
       contents = mainLayout
-      repaint
+      //repaint
+      //maximize()
+  }
+
+  menuBar = new MenuBar {
+    contents += new Menu("File") {
+      mnemonic = Key.F
+      contents += new MenuItem(Action("New") { controller.init() })
+      contents += new MenuItem(Action("Quit") { System.exit(0) })
+    }
+    contents += new Menu("Edit") {
+      mnemonic = Key.E
+      contents += new MenuItem(Action("Undo") { controller.undo })
+      contents += new MenuItem(Action("Redo") { controller.redo })
+    }
   }
 
   visible = true
-  repaint
+  //repaint
 }
