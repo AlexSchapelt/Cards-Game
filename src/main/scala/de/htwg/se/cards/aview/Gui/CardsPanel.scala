@@ -30,8 +30,14 @@ class CardsPanel(controller: Controller) extends FlowPanel {
 
   reactions += {
     case ButtonClicked(button: CardButton) =>
-      selection = (button.index :: selection).distinct
-      contents(button.index).border = BorderFactory.createLineBorder(Color.BLACK, 5)
+      if (!selection.contains(button.index)) {
+        selection = button.index :: selection
+        contents(button.index).border = BorderFactory.createLineBorder(Color.BLACK, 5)
+      } else {
+        selection = selection.filter(_ != button.index)
+        contents(button.index).border = BorderFactory.createEmptyBorder()
+      }
+
       repaint
   }
 }
