@@ -1,8 +1,9 @@
 package de.htwg.se.cards.aview.gui
 
-import java.awt.Dimension
+import java.awt.{Dimension, Image}
 
-import de.htwg.se.cards.controller.Controller
+import de.htwg.se.cards.controller.controllerComponent.controllerImpl.Controller
+import de.htwg.se.cards.model
 import javax.swing.ImageIcon
 
 import scala.swing.{Action, Button, Dimension, FlowPanel}
@@ -12,7 +13,7 @@ class PilePanel(controller: Controller) extends FlowPanel {
     action = Action(""){controller.draw()}
 
     val d = new Dimension(100, 150)
-    val img = new ImageIcon("./res/cards/red_back.png").getImage
+    val img: Image = new ImageIcon("./res/cards/red_back.png").getImage
 
     icon = new ImageIcon(img.getScaledInstance(d.width, d.height, java.awt.Image.SCALE_SMOOTH))
     preferredSize = d
@@ -20,8 +21,8 @@ class PilePanel(controller: Controller) extends FlowPanel {
 
   contents += new Button() {
     private val d = new Dimension(100, 150)
-    val card = controller.status.discard.head
-    val img = new ImageIcon("./res/cards/" + card.suit + "/" + card.value + ".png").getImage
+    val card: model.Card = controller.status.discard.head
+    val img: Image = new ImageIcon("./res/cards/" + card.suit + "/" + card.value + ".png").getImage
 
     icon = new ImageIcon(img.getScaledInstance(d.width, d.height, java.awt.Image.SCALE_SMOOTH))
     preferredSize = d

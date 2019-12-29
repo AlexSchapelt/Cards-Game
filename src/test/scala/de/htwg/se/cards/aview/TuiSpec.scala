@@ -1,6 +1,6 @@
 package de.htwg.se.cards.aview
 
-import de.htwg.se.cards.controller.Controller
+import de.htwg.se.cards.controller.controllerComponent.controllerImpl.Controller
 import de.htwg.se.cards.model.{DeckSingleton, Player, StatusFacade, Talon}
 import org.scalatest.{Matchers, WordSpec}
 

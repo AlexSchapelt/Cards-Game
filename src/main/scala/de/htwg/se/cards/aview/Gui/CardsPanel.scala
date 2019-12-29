@@ -1,19 +1,17 @@
 package de.htwg.se.cards.aview.gui
 
-import java.awt.{Color, Component, Graphics, Insets}
-import java.io.ObjectInputFilter.Status
+import java.awt.Color
 
-import de.htwg.se.cards.controller.{CardsChanged, Controller}
+import de.htwg.se.cards.controller.controllerComponent.controllerImpl.Controller
 import javax.swing.BorderFactory
-import javax.swing.border.Border
 
 import scala.swing.{Button, FlowPanel}
-import scala.swing.event.{ButtonClicked, SelectionChanged}
+import scala.swing.event.ButtonClicked
 
 class CardsPanel(controller: Controller) extends FlowPanel {
   listenTo(controller)
   var selection: List[Int] = Nil
-  val buttons = for {i <- controller.status.current.cards.indices.toList} yield {
+  val buttons: List[CardButton] = for {i <- controller.status.current.cards.indices.toList} yield {
     CardButton(controller, i)
   }
   buttons.foreach(x => {
@@ -21,7 +19,7 @@ class CardsPanel(controller: Controller) extends FlowPanel {
     contents += x
   })
 
-  val confirmButton = Button("play selected Cards") {
+  val confirmButton: Button = Button("play selected Cards") {
     println(selection)
     controller.play(selection)
   }

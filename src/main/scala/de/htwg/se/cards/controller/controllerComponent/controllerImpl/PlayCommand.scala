@@ -1,9 +1,9 @@
-package de.htwg.se.cards.controller
+package de.htwg.se.cards.controller.controllerComponent.controllerImpl
 
 import de.htwg.se.cards.model.{Card, Player}
 import de.htwg.se.cards.util.Command
 
-class playCommand(controller: Controller, toPlay: List[Int]) extends Command {
+class PlayCommand(controller: Controller, toPlay: List[Int]) extends Command {
   override def doStep(): Unit = {
     controller.status = controller.status.play(toPlay)
   }

@@ -1,16 +1,15 @@
 package de.htwg.se.cards.aview.gui
 
-import scala.swing._
-import scala.swing.Swing.LineBorder
-import scala.swing.event._
-import de.htwg.se.cards.controller._
+import de.htwg.se.cards.controller.controllerComponent._
+import de.htwg.se.cards.controller.controllerComponent.controllerImpl.Controller
 
-import scala.io.Source._
+import scala.swing._
+import scala.swing.event._
+
 
 class SwingGui(controller: Controller) extends Frame {
   private val cardsPos = 2
   private val pilesPos = 1
-  private val contrPos = 0
 
   maximize()
   override def closeOperation(): Unit = {
@@ -24,7 +23,7 @@ class SwingGui(controller: Controller) extends Frame {
   val cards = new CardsPanel(controller)
   val pile = new PilePanel(controller)
 
-  val mainLayout = new GridPanel(3, 1) {
+  val mainLayout: GridPanel = new GridPanel(3, 1) {
     contents +=
       new FlowPanel() {
         contents += Button("next Player") {
@@ -70,8 +69,8 @@ class SwingGui(controller: Controller) extends Frame {
     }
     contents += new Menu("Edit") {
       mnemonic = Key.E
-      contents += new MenuItem(Action("Undo") { controller.undo })
-      contents += new MenuItem(Action("Redo") { controller.redo })
+      contents += new MenuItem(Action("Undo") { controller.undo() })
+      contents += new MenuItem(Action("Redo") { controller.redo() })
     }
   }
 
