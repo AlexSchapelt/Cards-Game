@@ -1,10 +1,10 @@
 package de.htwg.se.cards.controller.controllerComponent.controllerImpl
 
 import de.htwg.se.cards.controller.controllerComponent._
-import de.htwg.se.cards.model.StatusFacade
+import de.htwg.se.cards.model.statusComponent.StatusInterface
 import de.htwg.se.cards.util.UndoManager
 
-class Controller(var status: StatusFacade) extends ControllerInterface {
+class Controller(var status: StatusInterface) extends ControllerInterface {
   private val undoManager = new UndoManager
 
   override def init(): Unit = {
@@ -29,6 +29,10 @@ class Controller(var status: StatusFacade) extends ControllerInterface {
 
   override def play(i: List[Int]): Unit = {
     undoManager.doStep(new PlayCommand(this, i))
+    if (status.rule.won(status)) {
+      println(status.current.name + " won")
+      System.exit(0)
+    }
     publish(new CardsChanged)
     publish(new DiscardChanged)
   }

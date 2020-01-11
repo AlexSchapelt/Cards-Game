@@ -1,5 +1,8 @@
 package de.htwg.se.cards.model
 
+import de.htwg.se.cards.model.playerComponent.playerImpl.Player
+import de.htwg.se.cards.model.talonComponent.talonImpl.Talon
+import de.htwg.se.cards.util.DeckSingleton
 import org.scalatest._
 
 import scala.language.postfixOps

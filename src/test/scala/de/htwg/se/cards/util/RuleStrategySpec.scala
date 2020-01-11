@@ -13,7 +13,7 @@ class RuleStrategySpec extends WordSpec with Matchers {
     }
     "implemented" should {
       val rule = new RuleStrategy {
-        override def canPlay(toPlay: List[model.Card], played: List[model.Card]): Boolean = {
+        override def canPlay(toPlay: List[Card], played: List[Card]): Boolean = {
           if (played.nonEmpty) {
             false
           }
@@ -23,8 +23,8 @@ class RuleStrategySpec extends WordSpec with Matchers {
         }
       }
       "Only allow to play if cards Match rules" in {
-        rule.canPlay(List(model.Card("Test", "test")), Nil) should be(true)
-        rule.canPlay(Nil, List(model.Card("Test", "test"))) should be(false)
+        rule.canPlay(List(Card("Test", "test")), Nil) should be(true)
+        rule.canPlay(Nil, List(Card("Test", "test"))) should be(false)
       }
     }
   }

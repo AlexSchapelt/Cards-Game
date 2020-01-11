@@ -1,7 +1,10 @@
 package de.htwg.se.cards.aview
 
 import de.htwg.se.cards.controller.controllerComponent.controllerImpl.Controller
-import de.htwg.se.cards.model.{DeckSingleton, Player, StatusFacade, Talon}
+import de.htwg.se.cards.model.playerComponent.playerImpl.Player
+import de.htwg.se.cards.model.statusComponent.statusImpl.StatusFacade
+import de.htwg.se.cards.model.talonComponent.talonImpl.Talon
+import de.htwg.se.cards.util.DeckSingleton
 import org.scalatest.{Matchers, WordSpec}
 
 class TuiSpec extends WordSpec with Matchers {

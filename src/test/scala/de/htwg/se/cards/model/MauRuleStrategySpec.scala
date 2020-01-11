@@ -1,5 +1,8 @@
 package de.htwg.se.cards.model
 
+import de.htwg.se.cards.model.playerComponent.playerImpl.Player
+import de.htwg.se.cards.model.statusComponent.statusImpl.StatusFacade
+import de.htwg.se.cards.util.{Card, DeckSingleton, MauRuleStrategy}
 import org.scalatest.{Matchers, WordSpec}
 
 class MauRuleStrategySpec extends WordSpec with Matchers {

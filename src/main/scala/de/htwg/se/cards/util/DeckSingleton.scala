@@ -1,4 +1,4 @@
-package de.htwg.se.cards.model
+package de.htwg.se.cards.util
 
 object DeckSingleton {
   val suits = List("DIAMONDS", "HEARTS", "SPADES", "CLOVES")

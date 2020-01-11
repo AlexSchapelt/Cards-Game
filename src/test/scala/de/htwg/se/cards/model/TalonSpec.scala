@@ -1,5 +1,7 @@
 package de.htwg.se.cards.model
 
+import de.htwg.se.cards.model.talonComponent.talonImpl.Talon
+import de.htwg.se.cards.util.DeckSingleton
 import org.scalatest.{Matchers, WordSpec}
 
 class TalonSpec extends WordSpec with Matchers {

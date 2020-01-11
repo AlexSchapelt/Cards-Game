@@ -6,6 +6,10 @@ import scala.io.StdIn.readLine
 import de.htwg.se.cards.aview._
 import de.htwg.se.cards.aview.gui.SwingGui
 import de.htwg.se.cards.controller.controllerComponent.controllerImpl.Controller
+import de.htwg.se.cards.model.playerComponent.playerImpl.Player
+import de.htwg.se.cards.model.statusComponent.statusImpl.StatusFacade
+import de.htwg.se.cards.model.talonComponent.talonImpl.Talon
+import de.htwg.se.cards.util.{DeckSingleton, MauRuleStrategy}
 
 import scala.util.{Failure, Success, Try}
 
@@ -43,7 +47,7 @@ object Cards {
         val queue = for {x <- Range(1, n.get + 1).toList} yield {
           Player("Player " + x, Nil)
         }
-        controller.status = controller.status.copy(queue = queue)
+        controller.status = controller.status.copyS(queue = queue)
         controller.init()
         state = play()
       }
