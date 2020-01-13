@@ -12,7 +12,7 @@ class Controller(var status: StatusInterface) extends ControllerInterface {
     publish(new StatusChanged)
   }
 
-  override def nexPlayer(): Unit = {
+  override def nextPlayer(): Unit = {
     status = status.nextPlayer
     undoManager.reset()
     publish(new PlayerChanged)

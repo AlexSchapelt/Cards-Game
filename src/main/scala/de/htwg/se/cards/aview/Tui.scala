@@ -15,7 +15,7 @@ class Tui(controller: Controller) extends Reactor {
     input match {
       //case "" => controller.addPlayer
       case "s" => controller.shuffle()
-      case "n" => controller.nexPlayer()
+      case "n" => controller.nextPlayer()
       case "d" => controller.draw()
       case "z" => controller.undo()
       case "y" => controller.redo()

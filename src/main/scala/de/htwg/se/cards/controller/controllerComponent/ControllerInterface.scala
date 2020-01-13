@@ -5,7 +5,7 @@ import scala.swing.Publisher
 trait ControllerInterface extends Publisher {
   def init(): Unit
 
-  def nexPlayer(): Unit
+  def nextPlayer(): Unit
 
   def draw(): Unit
 

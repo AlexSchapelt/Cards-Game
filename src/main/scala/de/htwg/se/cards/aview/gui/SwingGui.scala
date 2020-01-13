@@ -27,7 +27,7 @@ class SwingGui(controller: Controller) extends Frame {
     contents +=
       new FlowPanel() {
         contents += Button("next Player") {
-          controller.nexPlayer()
+          controller.nextPlayer()
         }
       }
     contents +=
