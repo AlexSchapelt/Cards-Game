@@ -1,12 +1,10 @@
 package de.htwg.se.cards.aview
 
-import de.htwg.se.cards.controller.controllerComponent.controllerImpl.Controller
-import de.htwg.se.cards.util.Observer
-
+import de.htwg.se.cards.controller.controllerComponent.ControllerInterface
 import scala.swing.Reactor
 import scala.util.Try
 
-class Tui(controller: Controller) extends Reactor {
+class Tui(controller: ControllerInterface) extends Reactor {
   listenTo(controller)
 
   def processInputLine(input: String): Unit = {

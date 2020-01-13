@@ -3,6 +3,8 @@ package de.htwg.se.cards.model.playerComponent.playerImpl
 import de.htwg.se.cards.model.playerComponent.PlayerInterface
 import de.htwg.se.cards.util.Card
 
+
+
 case class Player(name: String, cards: List[Card]) extends PlayerInterface {
   override def giveCard(card: Option[Card]): PlayerInterface = {
     card match {

@@ -9,6 +9,6 @@ object DeckSingleton {
   } yield Card(s, v)
 
   def getPower(card: Card): Int = {
-      values.indexOf(card.value)
+    values.indexOf(card.value)
   }
 }

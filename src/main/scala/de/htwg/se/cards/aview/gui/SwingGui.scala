@@ -1,13 +1,11 @@
 package de.htwg.se.cards.aview.gui
 
 import de.htwg.se.cards.controller.controllerComponent._
-import de.htwg.se.cards.controller.controllerComponent.controllerImpl.Controller
-
 import scala.swing._
 import scala.swing.event._
 
 
-class SwingGui(controller: Controller) extends Frame {
+class SwingGui(controller: ControllerInterface) extends Frame {
   private val cardsPos = 2
   private val pilesPos = 1
 

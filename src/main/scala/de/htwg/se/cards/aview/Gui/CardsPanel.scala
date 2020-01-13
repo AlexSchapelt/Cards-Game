@@ -2,16 +2,16 @@ package de.htwg.se.cards.aview.gui
 
 import java.awt.Color
 
-import de.htwg.se.cards.controller.controllerComponent.controllerImpl.Controller
+import de.htwg.se.cards.controller.controllerComponent.ControllerInterface
 import javax.swing.BorderFactory
 
 import scala.swing.{Button, FlowPanel}
 import scala.swing.event.ButtonClicked
 
-class CardsPanel(controller: Controller) extends FlowPanel {
+class CardsPanel(controller: ControllerInterface) extends FlowPanel {
   listenTo(controller)
   var selection: List[Int] = Nil
-  val buttons: List[CardButton] = for {i <- controller.status.current.cards.indices.toList} yield {
+  val buttons: List[CardButton] = for {i <- controller.status().current.cards.indices.toList} yield {
     CardButton(controller, i)
   }
   buttons.foreach(x => {

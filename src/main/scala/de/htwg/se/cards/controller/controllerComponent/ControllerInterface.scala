@@ -1,8 +1,12 @@
 package de.htwg.se.cards.controller.controllerComponent
 
+import de.htwg.se.cards.model.statusComponent.StatusInterface
+
 import scala.swing.Publisher
 
 trait ControllerInterface extends Publisher {
+  def status(): StatusInterface
+
   def init(): Unit
 
   def nextPlayer(): Unit
