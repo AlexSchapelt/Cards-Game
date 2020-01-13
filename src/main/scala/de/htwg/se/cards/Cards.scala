@@ -9,7 +9,7 @@ import de.htwg.se.cards.controller.controllerComponent.controllerImpl.Controller
 import de.htwg.se.cards.model.playerComponent.playerImpl.Player
 import de.htwg.se.cards.model.statusComponent.statusImpl.StatusFacade
 import de.htwg.se.cards.model.talonComponent.talonImpl.Talon
-import de.htwg.se.cards.util.{DeckSingleton, MauRuleStrategy}
+import de.htwg.se.cards.util.{DeckSingleton, MauRuleStrategy, PresidentRule}
 
 import scala.util.{Failure, Success, Try}
 

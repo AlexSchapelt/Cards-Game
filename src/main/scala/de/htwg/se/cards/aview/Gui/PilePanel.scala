@@ -11,7 +11,9 @@ import scala.swing.{Action, Button, Dimension, FlowPanel}
 
 class PilePanel(controller: Controller) extends FlowPanel {
   contents += new Button() {
-    action = Action(""){controller.draw()}
+    action = Action("") {
+      controller.draw()
+    }
 
     val d = new Dimension(100, 150)
     val img: Image = new ImageIcon("./res/cards/red_back.png").getImage
@@ -22,10 +24,13 @@ class PilePanel(controller: Controller) extends FlowPanel {
 
   contents += new Button() {
     private val d = new Dimension(100, 150)
-    val card: Card = controller.status.discard.head
-    val img: Image = new ImageIcon("./res/cards/" + card.suit + "/" + card.value + ".png").getImage
+    if (controller.status.discard.nonEmpty) {
+      val card: Card = controller.status.discard.head
+      val img: Image = new ImageIcon("./res/cards/" + card.suit + "/" + card.value + ".png").getImage
 
-    icon = new ImageIcon(img.getScaledInstance(d.width, d.height, java.awt.Image.SCALE_SMOOTH))
+      icon = new ImageIcon(img.getScaledInstance(d.width, d.height, java.awt.Image.SCALE_SMOOTH))
+    }
+    
     preferredSize = d
 
     opaque = true

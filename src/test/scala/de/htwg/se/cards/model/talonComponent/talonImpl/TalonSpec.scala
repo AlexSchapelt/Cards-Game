@@ -1,6 +1,5 @@
-package de.htwg.se.cards.model
+package de.htwg.se.cards.model.talonComponent.talonImpl
 
-import de.htwg.se.cards.model.talonComponent.talonImpl.Talon
 import de.htwg.se.cards.util.DeckSingleton
 import org.scalatest.{Matchers, WordSpec}
 

@@ -1,6 +1,5 @@
-package de.htwg.se.cards.model
+package de.htwg.se.cards.util
 
-import de.htwg.se.cards.util.{Card, DeckSingleton}
 import org.scalatest.{Matchers, WordSpec}
 
 class CardSpec extends WordSpec with Matchers {

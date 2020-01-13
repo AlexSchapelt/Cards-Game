@@ -7,4 +7,8 @@ object DeckSingleton {
     s <- suits
     v <- values
   } yield Card(s, v)
+
+  def getPower(card: Card): Int = {
+      values.indexOf(card.value)
+  }
 }

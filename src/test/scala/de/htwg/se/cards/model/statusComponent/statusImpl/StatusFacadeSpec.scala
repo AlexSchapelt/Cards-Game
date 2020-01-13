@@ -1,7 +1,6 @@
-package de.htwg.se.cards.model
+package de.htwg.se.cards.model.statusComponent.statusImpl
 
 import de.htwg.se.cards.model.playerComponent.playerImpl.Player
-import de.htwg.se.cards.model.statusComponent.statusImpl.StatusFacade
 import de.htwg.se.cards.model.talonComponent.talonImpl.Talon
 import de.htwg.se.cards.util.{DeckSingleton, MauRuleStrategy, RuleStrategy}
 import org.scalatest.{Matchers, WordSpec}
