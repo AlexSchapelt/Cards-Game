@@ -17,6 +17,8 @@ class Tui(controller: ControllerInterface) extends Reactor {
       case "d" => controller.draw()
       case "z" => controller.undo()
       case "y" => controller.redo()
+      case "save" => controller.save()
+      case "load" => controller.load()
       case _ => if(toPlay.isSuccess) controller.play(toPlay.get)
     }
   }

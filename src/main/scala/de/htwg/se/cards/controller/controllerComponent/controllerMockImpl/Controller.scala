@@ -23,4 +23,8 @@ class Controller extends ControllerInterface {
   override def redo(): Unit = {}
 
   override def statusToString: String = status.toString
+
+  override def load(): Unit = {}
+
+  override def save(): Unit = {}
 }

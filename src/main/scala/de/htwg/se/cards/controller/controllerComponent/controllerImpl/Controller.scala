@@ -1,6 +1,9 @@
 package de.htwg.se.cards.controller.controllerComponent.controllerImpl
 
+import com.google.inject.{Guice, Injector}
+import de.htwg.se.cards.CardsModule
 import de.htwg.se.cards.controller.controllerComponent._
+import de.htwg.se.cards.model.fileIOComponent.FileIOInterface
 import de.htwg.se.cards.model.statusComponent.StatusInterface
 import de.htwg.se.cards.util.UndoManager
 
@@ -50,4 +53,13 @@ class Controller(var status: StatusInterface) extends ControllerInterface {
 
   override def statusToString: String = status.toString
 
+  val injector: Injector = Guice.createInjector(new CardsModule)
+  val fileIO: FileIOInterface = injector.getInstance(classOf[FileIOInterface])
+
+  override def load(): Unit = {
+    status = fileIO.load
+    publish(new StatusChanged)
+  }
+
+  override def save(): Unit = fileIO.save(this.status)
 }

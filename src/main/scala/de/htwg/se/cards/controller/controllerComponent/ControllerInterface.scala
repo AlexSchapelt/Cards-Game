@@ -5,6 +5,10 @@ import de.htwg.se.cards.model.statusComponent.StatusInterface
 import scala.swing.Publisher
 
 trait ControllerInterface extends Publisher {
+  def load(): Unit
+
+  def save(): Unit
+
   def status(): StatusInterface
 
   def init(): Unit
