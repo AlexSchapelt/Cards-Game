@@ -1,12 +1,13 @@
 package de.htwg.se.cards.model.statusComponent.statusImpl
 
+import com.google.inject.Inject
 import de.htwg.se.cards.model.playerComponent.PlayerInterface
 import de.htwg.se.cards.model.statusComponent.StatusInterface
 import de.htwg.se.cards.model.talonComponent.TalonInterface
 import de.htwg.se.cards.model.talonComponent.talonImpl.Talon
 import de.htwg.se.cards.util.{Card, RuleStrategy}
 
-case class StatusFacade(talon: TalonInterface = Talon(Nil), queue: List[PlayerInterface] = Nil,
+case class StatusFacade @Inject()(talon: TalonInterface = Talon(Nil), queue: List[PlayerInterface] = Nil,
                         discard: List[Card] = Nil, rule: RuleStrategy = new RuleStrategy {}) extends StatusInterface {
   override def draw: StatusInterface = {
     val (t, c) = talon.drop()

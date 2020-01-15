@@ -2,6 +2,7 @@ package de.htwg.se.cards.model.playerComponent.playerImpl
 
 import de.htwg.se.cards.model.playerComponent.PlayerInterface
 import de.htwg.se.cards.util.Card
+import javax.inject.Inject
 
 
 

@@ -10,6 +10,7 @@ import de.htwg.se.cards.controller.controllerComponent.ControllerInterface
 import de.htwg.se.cards.controller.controllerComponent.controllerImpl.Controller
 import de.htwg.se.cards.model.playerComponent.PlayerInterface
 import de.htwg.se.cards.model.playerComponent.playerImpl.Player
+import de.htwg.se.cards.model.statusComponent.StatusInterface
 import de.htwg.se.cards.model.statusComponent.statusImpl.StatusFacade
 import de.htwg.se.cards.model.talonComponent.TalonInterface
 import de.htwg.se.cards.model.talonComponent.talonImpl.Talon
@@ -29,6 +30,7 @@ object Cards {
   val player2 = Player("Player 2", Nil)
   val talon = Talon(DeckSingleton.cards)*/
   //val testTalon = Talon(DeckSingleton.cards.take(5))
+  //val st = injector.getInstance(classOf[StatusInterface])
   val s = StatusFacade(talon, queue = List(player1, player2), rule = new MauRuleStrategy)
   val controller = new Controller(s)
   val tui = new Tui(controller)

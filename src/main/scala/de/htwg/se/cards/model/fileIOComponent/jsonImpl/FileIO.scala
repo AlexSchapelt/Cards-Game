@@ -1,5 +1,7 @@
 package de.htwg.se.cards.model.fileIOComponent.jsonImpl
 
+import com.google.inject.{Guice, Injector}
+import de.htwg.se.cards.CardsModule
 import de.htwg.se.cards.model.fileIOComponent.FileIOInterface
 import de.htwg.se.cards.model.playerComponent.PlayerInterface
 import de.htwg.se.cards.model.playerComponent.playerImpl.Player
@@ -12,6 +14,8 @@ import play.api.libs.json.{JsObject, JsString, JsValue, Json, Writes}
 import scala.io.Source
 
 class FileIO extends FileIOInterface {
+  val injector: Injector = Guice.createInjector(new CardsModule)
+
   override def load: StatusInterface = {
     val source: String
     = Source.fromFile("status.json").getLines.mkString
