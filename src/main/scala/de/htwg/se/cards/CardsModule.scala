@@ -20,9 +20,9 @@ class CardsModule extends AbstractModule with ScalaModule {
     p
   }
   override def configure(): Unit = {
-    //bind[ControllerInterface].to[Controller]
+    bind[ControllerInterface].to[Controller]
     bind[PlayerInterface].toInstance(Player("Player " + players(), Nil))
     bind[TalonInterface].toInstance(Talon(DeckSingleton.cards))
-    //bind[StatusInterface].to[StatusFacade]
+    bind[StatusInterface].to[StatusFacade]
   }
 }

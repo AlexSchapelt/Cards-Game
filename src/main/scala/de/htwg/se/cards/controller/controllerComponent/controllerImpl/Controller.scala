@@ -1,14 +1,20 @@
 package de.htwg.se.cards.controller.controllerComponent.controllerImpl
 
 import de.htwg.se.cards.controller.controllerComponent._
+import de.htwg.se.cards.model.playerComponent.PlayerInterface
 import de.htwg.se.cards.model.statusComponent.StatusInterface
-import de.htwg.se.cards.util.UndoManager
+import de.htwg.se.cards.util.{RuleStrategy, UndoManager}
+import javax.inject.Inject
 
-class Controller(var status: StatusInterface) extends ControllerInterface {
+class Controller @Inject()(var status: StatusInterface) extends ControllerInterface {
   private val undoManager = new UndoManager
 
-  override def init(): Unit = {
-    status = status.init
+  override def preInit(): Unit = {
+    publish(new Init)
+  }
+
+  override def init(player: List[PlayerInterface], rule: RuleStrategy): Unit = {
+    status = status.copyS(queue = player, rule = rule).init
     publish(new StatusChanged)
   }
 

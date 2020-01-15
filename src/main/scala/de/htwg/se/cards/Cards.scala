@@ -10,6 +10,7 @@ import de.htwg.se.cards.controller.controllerComponent.ControllerInterface
 import de.htwg.se.cards.controller.controllerComponent.controllerImpl.Controller
 import de.htwg.se.cards.model.playerComponent.PlayerInterface
 import de.htwg.se.cards.model.playerComponent.playerImpl.Player
+import de.htwg.se.cards.model.statusComponent.StatusInterface
 import de.htwg.se.cards.model.statusComponent.statusImpl.StatusFacade
 import de.htwg.se.cards.model.talonComponent.TalonInterface
 import de.htwg.se.cards.model.talonComponent.talonImpl.Talon
@@ -19,22 +20,13 @@ import scala.util.{Failure, Success, Try}
 
 object Cards {
   val injector: Injector = Guice.createInjector(new CardsModule)
-  //val controller = injector.getInstance(classOf[ControllerInterface])
-  val player1: PlayerInterface = injector.getInstance(classOf[PlayerInterface])
-  val player2: PlayerInterface = injector.getInstance(classOf[PlayerInterface]).copyP("Player 2")
   val talon: TalonInterface = injector.getInstance(classOf[TalonInterface])
+  val status: StatusInterface = injector.getInstance(classOf[StatusInterface])
+  val controller: ControllerInterface = injector.getInstance(classOf[ControllerInterface])
 
-
-  /*val player1 = Player("Player 1", Nil)
-  val player2 = Player("Player 2", Nil)
-  val talon = Talon(DeckSingleton.cards)*/
-  //val testTalon = Talon(DeckSingleton.cards.take(5))
-  val s = StatusFacade(talon, queue = List(player1, player2), rule = new MauRuleStrategy)
-  val controller = new Controller(s)
   val tui = new Tui(controller)
-  controller.init()
   val gui = new SwingGui(controller)
-  //controller.notifyObservers
+
 
   def main(args: Array[String]): Unit = {
     var input: String = "init" //args(0)
@@ -51,15 +43,7 @@ object Cards {
       }
 
       def initGame(): Unit = {
-        var n = toInt(readLine("Enter number of players: "))
-        while (n.isFailure) {
-          n = toInt(readLine("Enter number of players: "))
-        }
-        val queue = for {x <- Range(1, n.get + 1).toList} yield {
-          Player("Player " + x, Nil)
-        }
-        controller.status = controller.status.copyS(queue = queue)
-        controller.init()
+        controller.preInit()
         state = play()
       }
 
