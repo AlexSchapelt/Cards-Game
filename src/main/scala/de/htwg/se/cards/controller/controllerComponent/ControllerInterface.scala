@@ -1,17 +1,21 @@
 package de.htwg.se.cards.controller.controllerComponent
 
+import de.htwg.se.cards.model.playerComponent.PlayerInterface
 import de.htwg.se.cards.model.statusComponent.StatusInterface
+import de.htwg.se.cards.util.RuleStrategy
 
 import scala.swing.Publisher
 
 trait ControllerInterface extends Publisher {
+  def preInit(): Unit
+
   def load(): Unit
 
   def save(): Unit
 
   def status(): StatusInterface
 
-  def init(): Unit
+  def init(player: List[PlayerInterface], rule: RuleStrategy): Unit
 
   def nextPlayer(): Unit
 
@@ -39,3 +43,5 @@ class PlayerChanged extends Event
 class TalonChanged extends Event
 
 class DiscardChanged extends Event
+
+class Init extends Event

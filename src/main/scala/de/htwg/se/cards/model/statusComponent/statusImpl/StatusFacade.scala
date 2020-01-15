@@ -2,6 +2,7 @@ package de.htwg.se.cards.model.statusComponent.statusImpl
 
 import com.google.inject.Inject
 import de.htwg.se.cards.model.playerComponent.PlayerInterface
+import de.htwg.se.cards.model.playerComponent.playerImpl.Player
 import de.htwg.se.cards.model.statusComponent.StatusInterface
 import de.htwg.se.cards.model.talonComponent.TalonInterface
 import de.htwg.se.cards.model.talonComponent.talonImpl.Talon
@@ -9,6 +10,9 @@ import de.htwg.se.cards.util.{Card, RuleStrategy}
 
 case class StatusFacade @Inject()(talon: TalonInterface = Talon(Nil), queue: List[PlayerInterface] = Nil,
                         discard: List[Card] = Nil, rule: RuleStrategy = new RuleStrategy {}) extends StatusInterface {
+
+  def this() = this(Talon(Nil), Nil, Nil, new RuleStrategy {})
+
   override def draw: StatusInterface = {
     val (t, c) = talon.drop()
     this.copy(t, current.giveCard(c) :: queue.tail)
@@ -30,7 +34,11 @@ case class StatusFacade @Inject()(talon: TalonInterface = Talon(Nil), queue: Lis
   }
 
   override def current: PlayerInterface = {
-    queue.head
+    if (queue.isEmpty) {
+      Player("dummy", Nil)
+    } else {
+      queue.head
+    }
   }
 
   override def play(list: List[Int]): StatusInterface = {

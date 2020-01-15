@@ -1,7 +1,11 @@
 package de.htwg.se.cards.aview
 
-import de.htwg.se.cards.controller.controllerComponent.ControllerInterface
+import de.htwg.se.cards.controller.controllerComponent.{ControllerInterface, Init}
+import de.htwg.se.cards.model.playerComponent.playerImpl.Player
+import de.htwg.se.cards.util.MauRuleStrategy
+import scala.io.StdIn.readLine
 import scala.swing.Reactor
+import scala.swing.event.Event
 import scala.util.Try
 
 class Tui(controller: ControllerInterface) extends Reactor {
