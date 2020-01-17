@@ -3,7 +3,6 @@ package de.htwg.se.cards.aview.gui
 import de.htwg.se.cards.controller.controllerComponent.{CardsChanged, ControllerInterface, DiscardChanged, Init, PlayerChanged, PlayerWon, StatusChanged}
 import de.htwg.se.cards.model.playerComponent.playerImpl.Player
 import de.htwg.se.cards.util.MauRuleStrategy
-
 import scala.swing.event.Key
 import scala.swing.{Action, Button, Dialog, FlowPanel, Frame, GridPanel, Label, Menu, MenuBar, MenuItem}
 import scala.util.Try
@@ -39,8 +38,6 @@ class SwingGui(controller: ControllerInterface) extends Frame {
       val cards = new CardsPanel(controller)
       mainLayout.contents(cardsPos) = cards
       contents = mainLayout
-    //repaint
-    //maximize()
     case e: DiscardChanged =>
       val pile = new PilePanel(controller)
       mainLayout.contents(pilesPos) = pile
