@@ -6,7 +6,7 @@ import de.htwg.se.cards.util.Card
 import scala.io.Source
 import scala.util.Random
 
-case class Talon(cards: List[Card]) extends TalonInterface{
+case class Talon(cards: List[Card]) extends TalonInterface {
   private val file = Source.fromFile("./talon.txt")
   private val cover = file.getLines.mkString
   file.close()
@@ -19,7 +19,7 @@ case class Talon(cards: List[Card]) extends TalonInterface{
     }
   }
 
-  override def drop(number:Int): (Talon, Option[List[Card]]) = {
+  override def drop(number: Int): (Talon, Option[List[Card]]) = {
     if (this.cards.size < number) {
       (this, None)
     } else {
@@ -33,4 +33,6 @@ case class Talon(cards: List[Card]) extends TalonInterface{
 
 
   override def toString: String = String.format(cover)
+
+  override def copyT(cards: List[Card]): TalonInterface = this.copy(cards)
 }

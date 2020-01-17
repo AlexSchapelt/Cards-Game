@@ -14,4 +14,6 @@ case class Talon() extends TalonInterface{
   override def drop(number: Int): (TalonInterface, Option[List[util.Card]]) = (this, Option(cards.take(dropSize)))
 
   override def shuffle(): TalonInterface = this
+
+  override def copyT(cards: List[util.Card]): TalonInterface = this
 }

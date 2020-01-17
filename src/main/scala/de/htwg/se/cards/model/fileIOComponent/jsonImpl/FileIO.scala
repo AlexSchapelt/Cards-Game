@@ -7,6 +7,7 @@ import de.htwg.se.cards.model.playerComponent.PlayerInterface
 import de.htwg.se.cards.model.playerComponent.playerImpl.Player
 import de.htwg.se.cards.model.statusComponent.StatusInterface
 import de.htwg.se.cards.model.statusComponent.statusImpl.StatusFacade
+import de.htwg.se.cards.model.talonComponent.TalonInterface
 import de.htwg.se.cards.model.talonComponent.talonImpl.Talon
 import de.htwg.se.cards.util.{Card, MauRuleStrategy}
 import play.api.libs.json.{JsObject, JsString, JsValue, Json, Writes}
@@ -14,7 +15,11 @@ import play.api.libs.json.{JsObject, JsString, JsValue, Json, Writes}
 import scala.io.Source
 
 class FileIO extends FileIOInterface {
-  val injector: Injector = Guice.createInjector(new CardsModule)
+  private object in {
+    val in = Guice.createInjector(new CardsModule)
+  }
+
+  private def injector: Injector = in.in
 
   override def load: StatusInterface = {
     val source: String
@@ -24,13 +29,12 @@ class FileIO extends FileIOInterface {
   }
 
   def jsonToState(json: JsValue): StatusInterface = {
-    val talon = Talon(
+    val talon = injector.getInstance(classOf[TalonInterface]).copyT(
       for {
         c <- (json \ "status" \ "talon" \ "cards" \\ "card").toList
       } yield {
         jsonToCard(c)
-      }
-    )
+      })
 
     val queue: List[PlayerInterface] = for {
       p <- (json \ "status" \ "queue" \\ "player").toList
@@ -46,8 +50,8 @@ class FileIO extends FileIOInterface {
       }
 
     val rule = new MauRuleStrategy
-
-    StatusFacade(talon, queue, discard, rule)
+    injector.getInstance(classOf[StatusInterface]).copyS(talon, queue, discard, rule)
+    //StatusFacade(talon, queue, discard, rule)
   }
 
   def jsonToPlayer(elem: JsValue): PlayerInterface = {
@@ -57,7 +61,8 @@ class FileIO extends FileIOInterface {
     } yield {
       jsonToCard(c)
     }
-    Player(name, cards)
+    injector.getInstance(classOf[PlayerInterface]).copyP(name, cards)
+    //Player(name, cards)
   }
 
   def jsonToCard(elem: JsValue): Card = {

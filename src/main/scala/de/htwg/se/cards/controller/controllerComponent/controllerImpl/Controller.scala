@@ -40,11 +40,11 @@ class Controller @Inject()(var status: StatusInterface) extends ControllerInterf
   override def play(i: List[Int]): Unit = {
     undoManager.doStep(new PlayCommand(this, i))
     if (status.rule.won(status)) {
-      println(status.current.name + " won")
-      System.exit(0)
+      publish(new PlayerWon)
+    } else {
+      publish(new CardsChanged)
+      publish(new DiscardChanged)
     }
-    publish(new CardsChanged)
-    publish(new DiscardChanged)
   }
 
   override def undo(): Unit = {
@@ -64,6 +64,7 @@ class Controller @Inject()(var status: StatusInterface) extends ControllerInterf
 
   override def load(): Unit = {
     status = fileIO.load
+    undoManager.reset()
     publish(new StatusChanged)
   }
 

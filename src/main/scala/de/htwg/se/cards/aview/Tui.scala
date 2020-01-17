@@ -28,6 +28,7 @@ class Tui(controller: ControllerInterface) extends Reactor {
   }
 
   reactions += {
+    case e: Init =>
     case event =>  printTUI
   }
 

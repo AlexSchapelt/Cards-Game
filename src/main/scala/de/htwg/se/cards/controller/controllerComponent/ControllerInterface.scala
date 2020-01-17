@@ -45,3 +45,5 @@ class TalonChanged extends Event
 class DiscardChanged extends Event
 
 class Init extends Event
+
+class PlayerWon extends Event

@@ -11,4 +11,6 @@ trait TalonInterface {
   def drop(number: Int): (TalonInterface, Option[List[Card]])
 
   def shuffle(): TalonInterface
+
+  def copyT(cards: List[Card] = cards): TalonInterface
 }

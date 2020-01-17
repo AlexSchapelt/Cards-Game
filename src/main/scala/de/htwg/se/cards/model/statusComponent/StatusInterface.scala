@@ -1,5 +1,7 @@
 package de.htwg.se.cards.model.statusComponent
 
+import com.google.inject.{Guice, Injector}
+import de.htwg.se.cards.CardsModule
 import de.htwg.se.cards.model.playerComponent.PlayerInterface
 import de.htwg.se.cards.model.talonComponent.TalonInterface
 import de.htwg.se.cards.model.talonComponent.talonImpl.Talon
@@ -37,6 +39,8 @@ trait StatusInterface {
       "'d' to draw a card\n" +
       "'n' to change the Player\n" +
       "'q' to quit the game\n" +
+      "'save' to save the game\n" +
+      "'load' to load a saved game\n" +
       "'([0-9]+ )+' to play a card"
   }
 }

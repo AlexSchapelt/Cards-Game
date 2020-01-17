@@ -1,9 +1,12 @@
 package de.htwg.se.cards.aview.gui
 
+import java.awt.FlowLayout
+
 import de.htwg.se.cards.controller.controllerComponent._
 import de.htwg.se.cards.model.playerComponent.playerImpl.Player
 import de.htwg.se.cards.util.MauRuleStrategy
 
+import scala.collection.mutable
 import scala.swing._
 import scala.swing.event._
 import scala.util.Try
@@ -12,21 +15,15 @@ import scala.util.Try
 class SwingGui(controller: ControllerInterface) extends Frame {
   private val cardsPos = 2
   private val pilesPos = 1
-
-  maximize()
-
   override def closeOperation(): Unit = {
     System.exit(0)
   }
-
-
   listenTo(controller)
   title = "HTWG Cards"
 
-  val cards = new CardsPanel(controller)
-  val pile = new PilePanel(controller)
-
-  val mainLayout: GridPanel = new GridPanel(3, 1) {
+  private def cards = new CardsPanel(controller)
+  private def pile = new PilePanel(controller)
+  private def mainLayout: GridPanel = new GridPanel(3, 1) {
     contents +=
       new FlowPanel() {
         contents += Button("next Player") {
@@ -39,7 +36,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
       cards
   }
 
-  contents = mainLayout
+  //contents = mainLayout
 
   reactions += {
     case e: CardsChanged =>
@@ -71,9 +68,12 @@ class SwingGui(controller: ControllerInterface) extends Frame {
         Player("Player " + x, Nil)
       }
       controller.init(queue, new MauRuleStrategy)
+    case e: PlayerWon =>
+      contents = new Label(controller.status().current.name + " Won! go to File->New to play another round")
   }
 
   private def getPlayer: String = {
+    contents = new FlowPanel()
     var in = Dialog.showInput(contents.head, "how many player would like to play?", initial = "2")
     while(in.isEmpty) {
       in = Dialog.showInput(contents.head, "how many player would like to play?", initial = "2")
@@ -85,7 +85,13 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     contents += new Menu("File") {
       mnemonic = Key.F
       contents += new MenuItem(Action("New") {
-        controller.init(controller.status().queue, controller.status().rule) /*controller.preInit()*/
+        controller.preInit()
+      })
+      contents += new MenuItem(Action("Save") {
+        controller.save()
+      })
+      contents += new MenuItem(Action("Load") {
+        controller.load()
       })
       contents += new MenuItem(Action("Quit") {
         System.exit(0)

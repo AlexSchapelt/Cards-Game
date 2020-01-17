@@ -24,7 +24,7 @@ class CardsModule extends AbstractModule with ScalaModule {
     bind[ControllerInterface].to[Controller]
     bind[PlayerInterface].toInstance(Player("Player " + players(), Nil))
     bind[TalonInterface].toInstance(Talon(DeckSingleton.cards))
-    bind[FileIOInterface].toInstance(new xmlImpl.FileIO())
+    bind[FileIOInterface].toInstance(new jsonImpl.FileIO())
     bind[StatusInterface].to[StatusFacade]
   }
 }
