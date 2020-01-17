@@ -1,13 +1,12 @@
 package de.htwg.se.cards.aview.gui
 
-import de.htwg.se.cards.controller.controllerComponent.{CardsChanged, ControllerInterface, DiscardChanged, Init, PlayerChanged, PlayerWon, StatusChanged, controllerImpl}
+import de.htwg.se.cards.controller.controllerComponent.{CardsChanged, ControllerInterface, DiscardChanged, Init, PlayerChanged, PlayerWon, StatusChanged}
 import de.htwg.se.cards.model.playerComponent.playerImpl.Player
 import de.htwg.se.cards.util.MauRuleStrategy
 
-import scala.swing._
-import scala.swing.event._
+import scala.swing.event.Key
+import scala.swing.{Action, Button, Dialog, FlowPanel, Frame, GridPanel, Label, Menu, MenuBar, MenuItem}
 import scala.util.Try
-
 
 class SwingGui(controller: ControllerInterface) extends Frame {
   private val cardsPos = 2
