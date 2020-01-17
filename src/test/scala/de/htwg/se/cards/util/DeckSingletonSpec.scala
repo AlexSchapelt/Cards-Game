@@ -14,5 +14,8 @@ class DeckSingletonSpec extends WordSpec with Matchers {
     "not have other cards" in {
       d.cards.contains(Card("sdhaksdh", "lksajd")) should be(false)
     }
+    "return a Cards Power" in {
+      d.getPower(d.cards.head) should be (0)
+    }
   }
 }
