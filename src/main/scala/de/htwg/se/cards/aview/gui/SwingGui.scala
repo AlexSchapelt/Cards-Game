@@ -1,7 +1,6 @@
 package de.htwg.se.cards.aview.gui
 
-import de.htwg.se.cards.controller.controllerComponent._
-import de.htwg.se.cards.controller.controllerComponent.controllerImpl
+import de.htwg.se.cards.controller.controllerComponent.{CardsChanged, ControllerInterface, DiscardChanged, Init, PlayerChanged, PlayerWon, StatusChanged, controllerImpl}
 import de.htwg.se.cards.model.playerComponent.playerImpl.Player
 import de.htwg.se.cards.util.MauRuleStrategy
 
