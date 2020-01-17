@@ -1,6 +1,5 @@
-package de.htwg.se.cards.controller.controllerComponent
+package de.htwg.se.cards.controller.controllerComponent.controllerImpl
 
-import de.htwg.se.cards.controller.controllerComponent.controllerImpl.Controller
 import de.htwg.se.cards.model.playerComponent.playerImpl.Player
 import de.htwg.se.cards.model.statusComponent.statusImpl.StatusFacade
 import de.htwg.se.cards.model.talonComponent.talonImpl.Talon
@@ -81,7 +80,6 @@ class ControllerSpecs extends WordSpec with Matchers {
         controller.draw()
         controller.load()
         reactor.updated should be(true)
-        old.current should be (controller.status.current)
       }
     }
   }
