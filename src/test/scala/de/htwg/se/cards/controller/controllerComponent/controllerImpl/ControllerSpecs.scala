@@ -1,5 +1,5 @@
 package de.htwg.se.cards.controller.controllerComponent
-/*
+
 import de.htwg.se.cards.controller.controllerComponent.controllerImpl.Controller
 import de.htwg.se.cards.model.playerComponent.playerImpl.Player
 import de.htwg.se.cards.model.statusComponent.statusImpl.StatusFacade
@@ -8,6 +8,7 @@ import de.htwg.se.cards.util.{DeckSingleton, MauRuleStrategy, Observer}
 import org.scalatest.{Matchers, WordSpec}
 
 import scala.language.reflectiveCalls
+import scala.swing.{Publisher, Reactor}
 
 class ControllerSpecs extends WordSpec with Matchers {
   "A Controller" when {
@@ -20,54 +21,64 @@ class ControllerSpecs extends WordSpec with Matchers {
 
       val controller = new Controller(status)
 
-      val observer = new Observer {
-        var updated: Boolean = false
+      val reactor = new Reactor {
+        listenTo(controller)
+        var update = false
+        reactions += {
+          case event => update = true
+        }
 
-        def isUpdated: Boolean = updated
-
-        override def update: Boolean = {
-          updated = true
-          updated
+        def updated: Boolean = {
+          val u = update
+          update = false
+          u
         }
       }
-      controller.listenTo(observer)
       "notify its Observer after shuffle" in {
         controller.shuffle()
-        observer.updated should be(true)
+        reactor.updated should be(true)
         controller.status.talon should not be talon.shuffle()
       }
-      /*"notify its Observer after showCards" in {
-        controller.showCards
-        observer.updated should be (true)
-      }*/
+
       "notify its Observer after draw" in {
         controller.draw()
-        observer.updated should be(true)
+        reactor.updated should be(true)
         status.draw.talon.cards.size should be(status.talon.cards.size - 1)
         status.draw.current.cards.size should be(status.current.cards.size + 1)
       }
       "notify its Observer after play" in {
         controller.play(0 :: Nil)
-        observer.updated should be(true)
+        reactor.updated should be(true)
       }
       "handle undo/redo for playing a card" in {
         val oldCards = controller.status.current.cards
         controller.undo()
-        controller.status.current.cards.size should be (oldCards.size + 1)
+        controller.status.current.cards.size should be(oldCards.size + 1)
         controller.redo()
-        controller.status.current.cards.size should be (oldCards.size)
+        controller.status.current.cards.size should be(oldCards.size)
         controller.undo()
       }
       "notify its Observer after nextPlayer" in {
         controller.nextPlayer()
-        observer.updated should be(true)
+        reactor.updated should be(true)
         controller.status.current should be(status.queue.tail.head)
       }
       "notify its Observer after init" in {
-        controller.init()
-        observer.updated should be(true)
+        controller.init(List(Player("p1", Nil)), new MauRuleStrategy)
+        reactor.updated should be(true)
         controller.status.queue.head.cards.size should be(7)
+      }
+      "not notify its Observer after save" in {
+        controller.save()
+        reactor.updated should be(false)
+      }
+      "notify its observer after load" in {
+        val old = controller.status
+        controller.draw()
+        controller.load()
+        reactor.updated should be(true)
+        old.current should be (controller.status.current)
       }
     }
   }
-}*/
+}
