@@ -68,6 +68,10 @@ class ControllerSpecs extends WordSpec with Matchers {
         reactor.updated should be(true)
         controller.status.queue.head.cards.size should be(7)
       }
+      "notify its Observer after preInit" in {
+        controller.preInit()
+        reactor.updated should be (true)
+      }
       "not notify its Observer after save" in {
         controller.save()
         reactor.updated should be(false)
