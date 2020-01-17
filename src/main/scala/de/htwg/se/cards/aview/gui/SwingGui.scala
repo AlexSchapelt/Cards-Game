@@ -1,12 +1,9 @@
 package de.htwg.se.cards.aview.gui
 
-import java.awt.FlowLayout
-
 import de.htwg.se.cards.controller.controllerComponent._
 import de.htwg.se.cards.model.playerComponent.playerImpl.Player
 import de.htwg.se.cards.util.MauRuleStrategy
 
-import scala.collection.mutable
 import scala.swing._
 import scala.swing.event._
 import scala.util.Try
