@@ -11,9 +11,9 @@ case class Player() extends PlayerInterface{
 
   override def cards: List[util.Card] = DeckSingleton.cards.take(cardsSize)
 
-  override def giveCard(card: Option[util.Card]): PlayerInterface = this.copyP()
+  override def giveCard(card: Option[util.Card]): PlayerInterface = this
 
-  override def giveCards(cards: Option[List[util.Card]]): PlayerInterface = this.copyP()
+  override def giveCards(cards: Option[List[util.Card]]): PlayerInterface = this
 
   override def copyP(name: String, cards: List[util.Card]): PlayerInterface = this
 }

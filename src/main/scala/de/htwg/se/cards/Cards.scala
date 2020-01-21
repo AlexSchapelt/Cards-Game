@@ -24,7 +24,7 @@ object Cards {
   val status: StatusInterface = injector.getInstance(classOf[StatusInterface])
   val controller: ControllerInterface = injector.getInstance(classOf[ControllerInterface])
 
-  val tui = new Tui(controller)
+  //val tui = new Tui(controller)
   val gui = new SwingGui(controller)
 
 
@@ -38,21 +38,21 @@ object Cards {
       def handle(e: String): Unit = {
         e match {
           case "init" => state = initGame()
-          case _ => state = play()
+          //case _ => state = play()
         }
       }
 
       def initGame(): Unit = {
         controller.preInit()
-        state = play()
+        //state = play()
       }
 
-      def play(): Unit = {
+      /*def play(): Unit = {
         while (input != "q") {
           tui.processInputLine(input)
           input = readLine("Input: ")
         }
-      }
+      }*/
     }
   }
 
