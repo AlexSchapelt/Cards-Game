@@ -15,7 +15,6 @@ RUN \
   rm sbt-$SBT_VERSION.deb && \
   apt-get update && \
   apt-get install -y sbt libxrender1 libxtst6 libxi6
-
 EXPOSE 80
 WORKDIR /Sources
 ADD . /Sources

@@ -12,3 +12,18 @@ It has a MVC-Layout and is compatible with the Docker "scala-sbt" image from hse
 
 It is the used to be a Cards-Game Engine.
 In this release only Mau is implemented, but this will change in further patches.
+
+####How to run
+#####Docker:
+run your container with following flags:
+-it --rm  -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY 
+
+you may have to execute
+
+xhost +local:$(id -un) 
+
+first
+
+
+The presentation for this project can be found here:
+https://docs.google.com/presentation/d/1J6Qn5GGaf19PQWvK_TDqHCSGwhvDFqD_/edit#slide=id.p1
