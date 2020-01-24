@@ -15,7 +15,9 @@ It is the used to be a Cards-Game Engine.
 In this release only Mau is implemented, but this will change in further patches.
 
 ####How to run
+
 #####Docker:
+
 run your container with following flags:
 -it --rm  -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY 
 
